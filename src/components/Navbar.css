@@ -1,0 +1,34 @@
+.navbar {
+  min-width: 100vw;
+}
+
+.navbar ul {
+  width: 93vw;
+  margin: 2.5rem auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 8vh;
+}
+
+.navbar .logo {
+  margin-right: auto;
+}
+
+.navbar .logo img {
+  object-fit: cover;
+}
+
+.navbar ul li {
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.navbar ul li a {
+  color: var(--text-color);
+  letter-spacing: -0.05rem;
+}
+
+.navbar ul li:not(:first-child) {
+  margin-left: 2rem;
+}
