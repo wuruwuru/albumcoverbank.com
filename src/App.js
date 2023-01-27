@@ -4,12 +4,20 @@ import "./App.css";
 // IMPORTS
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 
+// required imports for the nav menu icon
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+
 // PAGES AND COMPONENTS
 import Navbar from "./components/Navbar";
 import Home from "./pages/home/Home";
 import CoverBank from "./pages/cover-bank/CoverBank";
 import About from "./pages/about/About";
 import Stories from "./pages/stories/Stories";
+
+
+library.add(fas)
+
 
 function App() {
   return (
