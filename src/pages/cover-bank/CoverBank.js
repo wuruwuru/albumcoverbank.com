@@ -18,10 +18,7 @@ const base = new Airtable({ apiKey: apiKey }).base("appHk58J4aUulwANn");
 export default function CoverBank() {
   const [covers, setCovers] = useState([]);
 
-
-  // FETCH FROM AIRTABLE
-
-  // FETCH ALL COVERS
+  // FETCH FROM ALL COVERS FROM AIRTABLE
   base("covers")
     .select({ pageSize: 12, view: "All Covers" })
     .eachPage(function page(records, fetchNextPage) {
@@ -30,11 +27,9 @@ export default function CoverBank() {
       // fetchNextPage();
     });
 
-  console.log(covers);
   return (
     <div className="cover-bank">
       <CoverGrid covers={covers} />
-      <button>more</button>
     </div>
   );
 }
