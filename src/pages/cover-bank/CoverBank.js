@@ -20,22 +20,35 @@ export default function CoverBank() {
   } = useFetchAllCovers(offset, pageSize);
 
   useEffect(() => {
+    // ADD SCROLL EVENT TO WINDOW AND SET OFFSET
     if (status === "success") {
+      window.addEventListener("scroll", handleScroll);
       setOffset(allCovers.offset);
+
+      // SET INITIAL COVERS ONCE THE COMPONENT MOUNTS
       if (covers.length === 0) {
         setCovers(allCovers.records);
       }
+
+      // REFETCH THE DATA ONCE WE HAVE THE FIRST 12 COVERS
       if (covers.length === pageSize) {
         refetch();
       }
     }
+
+    // CALLBACK FUNCTION
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [allCovers, status, covers.length, refetch, pageSize]);
 
-  const handleClick = async () => {
-    await refetch();
-    setCovers((prevCovers) => {
-      return [...prevCovers, ...allCovers.records];
-    });
+  // FUNCTION THAT FIRES ONCE THE USER GETS TO THE BOTTOM OF THE SCREEN
+  const handleScroll = async () => {
+    const isAtBottom =
+      window.innerHeight + window.pageYOffset >= document.body.offsetHeight;
+    if (isAtBottom) {
+      console.log(covers);
+      await refetch();
+      setCovers([...covers, ...allCovers.records]);
+    }
   };
 
   return (
@@ -43,7 +56,6 @@ export default function CoverBank() {
       {status === "success" && (
         <>
           <CoverGrid covers={covers} />
-          <button onClick={handleClick}>More</button>
         </>
       )}
     </div>

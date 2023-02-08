@@ -8,7 +8,7 @@ const config = {
   headers: { Authorization: `Bearer ${apiKey}` },
 };
 
-// FETCH ALL games
+// FETCH ALL GAMES
 export const useFetchAllCovers = (offset, pageSize) => {
   const fetchAllCover = async () => {
     try {
@@ -28,6 +28,7 @@ export const useFetchAllCovers = (offset, pageSize) => {
     {
       refetchOnWindowFocus: true,
       refetchOnMount: true,
+      keepPreviousData: true,
     }
   );
   return { status, data, isFetching, refetch };
