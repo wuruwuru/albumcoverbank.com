@@ -1,53 +1,51 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 // CSS IMPORT
 import "./CoverBank.css";
 
-// import env from "react-dotenv";
-
 // IMPORT COMPONENTS
 import CoverGrid from "./CoverGrid";
-
-// AIRTABLE IMPORT
-import Airtable from "airtable";
-
-const apiKey = process.env.REACT_APP_API_KEY;
-
-const base = new Airtable({ apiKey: apiKey }).base("appHk58J4aUulwANn");
+import { useFetchAllCovers } from "../../hooks/fetch";
 
 export default function CoverBank() {
   const [covers, setCovers] = useState([]);
+  const [offset, setOffset] = useState("");
+  let pageSize = 12;
 
   // FETCH FROM ALL COVERS FROM AIRTABLE
-  base("covers")
-    .select({ pageSize: 12, view: "All Covers" })
-    .eachPage(function page(records, fetchNextPage) {
-      setCovers(records);
+  const {
+    status,
+    data: allCovers,
+    refetch,
+  } = useFetchAllCovers(offset, pageSize);
 
-      // fetchNextPage();
+  useEffect(() => {
+    if (status === "success") {
+      setOffset(allCovers.offset);
+      if (covers.length === 0) {
+        setCovers(allCovers.records);
+      }
+      if (covers.length === pageSize) {
+        refetch();
+      }
+    }
+  }, [allCovers, status, covers.length, refetch, pageSize]);
+
+  const handleClick = async () => {
+    await refetch();
+    setCovers((prevCovers) => {
+      return [...prevCovers, ...allCovers.records];
     });
+  };
 
   return (
     <div className="cover-bank">
-      <CoverGrid covers={covers} />
+      {status === "success" && (
+        <>
+          <CoverGrid covers={covers} />
+          <button onClick={handleClick}>More</button>
+        </>
+      )}
     </div>
   );
 }
-
-// .eachPage(function page(records, fetchNextPage) {
-//   // This function (`page`) will get called for each page of records.
-
-//   records.forEach(function(record) {
-//       console.log('Retrieved', record.get('Album'));
-//   });
-
-//   // To fetch the next page of records, call `fetchNextPage`.
-//   // If there are more records, `page` will get called again.
-//   // If there are no more records, `done` will get called.
-//   fetchNextPage();
-
-// }, function done(err) {
-//   if (err) { console.error(err); return; }
-// });
-
-// const {. records, fetchNextPage  } = baseData
