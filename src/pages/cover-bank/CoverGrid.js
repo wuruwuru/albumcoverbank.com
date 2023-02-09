@@ -1,11 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
+// CSS IMPORT
+import classes from "./CoverBank.module.css";
+
 export default function CoverGrid({ covers }) {
   const navigate = useNavigate();
 
   return (
-    <div className="cover-grid">
+    <div className={classes.coverGrid}>
       {covers &&
         covers.map((cover) => (
           <div

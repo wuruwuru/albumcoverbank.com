@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
 
 // CSS IMPORT
-import "./CoverBank.css";
+import classes from "./CoverBank.module.css";
 
 // IMPORT COMPONENTS
 import CoverGrid from "./CoverGrid";
 import { useFetchAllCovers } from "../../hooks/fetch";
+import SearchBar from "../../components/searchBar/SearchBar";
 
 export default function CoverBank() {
   const [covers, setCovers] = useState([]);
   const [offset, setOffset] = useState("");
-  let pageSize = 12;
+  let pageSize = 15;
 
   // FETCH FROM ALL COVERS FROM AIRTABLE
   const {
@@ -52,9 +53,15 @@ export default function CoverBank() {
   };
 
   return (
-    <div className="cover-bank">
+    <div className={classes.CoverBank}>
       {status === "success" && (
         <>
+          <div className={classes.CoverBankHeader}>
+            <p>Explore Nigerian Album Covers</p>
+            <h2>5246 Covers</h2>
+          </div>
+
+          <SearchBar />
           <CoverGrid covers={covers} />
         </>
       )}

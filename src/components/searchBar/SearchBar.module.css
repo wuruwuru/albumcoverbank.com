@@ -1,0 +1,38 @@
+.SearchBar {
+  display: grid;
+  place-items: center;
+  position: relative;
+  width: 60%;
+  margin: 2rem auto 5rem;
+}
+
+.SearchBar img:nth-child(1) {
+  position: absolute;
+  left: 23px;
+  top: 15px;
+}
+
+.SearchBar img:nth-child(3) {
+  position: absolute;
+  right: 23px;
+  top: 15px;
+}
+
+.SearchBar input {
+  width: 100%;
+  background: #f7f7f7;
+  border: 2px solid #d2d2d2;
+  border-radius: 12px;
+  box-sizing: border-box;
+  font-family: var(--inter-family);
+  padding: 1rem 3.2rem;
+}
+
+.SearchBar input::placeholder {
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.SearchBar input:focus {
+  outline: none;
+}
