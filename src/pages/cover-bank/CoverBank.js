@@ -11,43 +11,38 @@ import SearchBar from "../../components/searchBar/SearchBar";
 export default function CoverBank() {
   const [covers, setCovers] = useState([]);
   const [offset, setOffset] = useState("");
-  let pageSize = 15;
+  const [searchTerm, setSearchTerm] = useState("");
+  let pageSize = 12;
 
   // FETCH FROM ALL COVERS FROM AIRTABLE
-  const {
-    status,
-    data: allCovers,
-    refetch,
-  } = useFetchAllCovers(offset, pageSize);
+  const { status, data: allCovers } = useFetchAllCovers(
+    offset,
+    pageSize,
+    searchTerm
+  );
 
   useEffect(() => {
     // ADD SCROLL EVENT TO WINDOW AND SET OFFSET
-    if (status === "success") {
+    if (status === "success" && allCovers?.records.length > 1) {
       window.addEventListener("scroll", handleScroll);
-      setOffset(allCovers.offset);
 
       // SET INITIAL COVERS ONCE THE COMPONENT MOUNTS
       if (covers.length === 0) {
         setCovers(allCovers.records);
-      }
-
-      // REFETCH THE DATA ONCE WE HAVE THE FIRST 12 COVERS
-      if (covers.length === pageSize) {
-        refetch();
+        setOffset(allCovers.offset);
       }
     }
 
     // CALLBACK FUNCTION
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [allCovers, status, covers.length, refetch, pageSize]);
+  }, [status, allCovers]);
 
   // FUNCTION THAT FIRES ONCE THE USER GETS TO THE BOTTOM OF THE SCREEN
   const handleScroll = async () => {
     const isAtBottom =
       window.innerHeight + window.pageYOffset >= document.body.offsetHeight;
     if (isAtBottom) {
-      console.log(covers);
-      await refetch();
+      setOffset(allCovers.offset);
       setCovers([...covers, ...allCovers.records]);
     }
   };
@@ -61,7 +56,7 @@ export default function CoverBank() {
             <h2>5246 Covers</h2>
           </div>
 
-          <SearchBar />
+          <SearchBar setSearchTerm={setSearchTerm} />
           <CoverGrid covers={covers} />
         </>
       )}

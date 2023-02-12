@@ -36,3 +36,36 @@
 .SearchBar input:focus {
   outline: none;
 }
+
+/* FILTER DROPDOWN */
+.FilterContainer {
+  position: relative;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.FilterForm {
+  margin: auto;
+  padding: 2rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 4;
+  box-sizing: border-box;
+  background: #fdfdfd;
+  box-shadow: -4px 6px 12px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.FormHeader {
+  display: flex;
+  padding-bottom: 2rem;
+}
+
+.FormHeader h4 {
+  margin-right: auto;
+  font-weight: 600;
+  font-size: 16px;
+  color: #171717;
+}
