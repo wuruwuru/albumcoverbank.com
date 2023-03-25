@@ -15,7 +15,7 @@ export default function CoverGrid({ covers }) {
             key={cover.id}
             onClick={() => navigate(`/cover-bank/${cover.id}`)}
           >
-            <img src={cover?.fields?.Cover[0].url} alt="album cover" />
+            <img src={cover?.fields?.Cover[0]?.thumbnails?.full?.url} alt="album cover" />
             <p> {cover?.fields?.Album} </p>
             <span>{cover.fields["Designers copy"]}</span>
           </div>

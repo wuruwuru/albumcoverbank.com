@@ -10,12 +10,17 @@
   position: absolute;
   left: 23px;
   top: 15px;
+  width: 20px;
+  height: 20px;
 }
 
 .SearchBar img:nth-child(3) {
   position: absolute;
   right: 23px;
   top: 15px;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
 }
 
 .SearchBar input {
@@ -42,6 +47,12 @@
   position: relative;
   width: 100%;
   margin-top: 8px;
+}
+
+.FilterContainer img {
+  width: 18px;
+  height: 18px;
+  object-fit: cover;
 }
 
 .FilterForm {

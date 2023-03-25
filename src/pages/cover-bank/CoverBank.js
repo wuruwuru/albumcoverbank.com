@@ -5,27 +5,38 @@ import classes from "./CoverBank.module.css";
 
 // IMPORT COMPONENTS
 import CoverGrid from "./CoverGrid";
-import { useFetchAllCovers } from "../../hooks/fetch";
+import { useFetchAllCovers, useFetchSearch } from "../../hooks/fetch";
 import SearchBar from "../../components/searchBar/SearchBar";
 
 export default function CoverBank() {
   const [covers, setCovers] = useState([]);
+  const [searchCovers, setSearchCovers] = useState([]);
   const [offset, setOffset] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
+  const [selectedOptions, setSelectedOptions] = useState({
+    artist: "",
+    designer: "",
+    year: "",
+    genre: "",
+  });
+
   let pageSize = 12;
 
   // FETCH FROM ALL COVERS FROM AIRTABLE
-  const { status, data: allCovers } = useFetchAllCovers(
+  const { status, data: allCovers } = useFetchAllCovers(offset, pageSize, "");
+
+  // FETCH SEARCH RESULTS
+  const { data: allSearch } = useFetchSearch(
     offset,
-    pageSize,
-    searchTerm
+    searchTerm,
+    selectedOptions
   );
 
   useEffect(() => {
     // ADD SCROLL EVENT TO WINDOW AND SET OFFSET
     if (status === "success" && allCovers?.records.length > 1) {
       window.addEventListener("scroll", handleScroll);
-
+      setSearchCovers(allSearch?.records);
       // SET INITIAL COVERS ONCE THE COMPONENT MOUNTS
       if (covers.length === 0) {
         setCovers(allCovers.records);
@@ -35,7 +46,7 @@ export default function CoverBank() {
 
     // CALLBACK FUNCTION
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [status, allCovers]);
+  }, [status, allCovers, allSearch]);
 
   // FUNCTION THAT FIRES ONCE THE USER GETS TO THE BOTTOM OF THE SCREEN
   const handleScroll = async () => {
@@ -56,8 +67,23 @@ export default function CoverBank() {
             <h2>5246 Covers</h2>
           </div>
 
-          <SearchBar setSearchTerm={setSearchTerm} />
-          <CoverGrid covers={covers} />
+          <SearchBar
+            setSearchTerm={setSearchTerm}
+            setSelectedOptions={setSelectedOptions}
+          />
+
+          {!searchTerm &&
+            !selectedOptions.designer &&
+            !selectedOptions.artist &&
+            !selectedOptions.year &&
+            !selectedOptions.genre && <CoverGrid covers={covers} />}
+
+          {/* FOR SEARCHING */}
+          {(searchTerm ||
+            selectedOptions.designer ||
+            selectedOptions.artist ||
+            selectedOptions.year ||
+            selectedOptions.genre) && <CoverGrid covers={searchCovers} />}
         </>
       )}
     </div>
