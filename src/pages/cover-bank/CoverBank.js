@@ -60,32 +60,34 @@ export default function CoverBank() {
 
   return (
     <div className={classes.CoverBank}>
-      {status === "success" && (
-        <>
-          <div className={classes.CoverBankHeader}>
-            <p>Explore Nigerian Album Covers</p>
-            <h2>5246 Covers</h2>
-          </div>
+      <>
+        <div className={classes.CoverBankHeader}>
+          <p>Explore Nigerian Album Covers</p>
+          <h2>5246 Covers</h2>
+        </div>
 
-          <SearchBar
-            setSearchTerm={setSearchTerm}
-            setSelectedOptions={setSelectedOptions}
-          />
+        <SearchBar
+          setSearchTerm={setSearchTerm}
+          setSelectedOptions={setSelectedOptions}
+        />
 
-          {!searchTerm &&
-            !selectedOptions.designer &&
-            !selectedOptions.artist &&
-            !selectedOptions.year &&
-            !selectedOptions.genre && <CoverGrid covers={covers} />}
+        {status === "success" && (
+          <>
+            {!searchTerm &&
+              !selectedOptions.designer &&
+              !selectedOptions.artist &&
+              !selectedOptions.year &&
+              !selectedOptions.genre && <CoverGrid covers={covers} />}
 
-          {/* FOR SEARCHING */}
-          {(searchTerm ||
-            selectedOptions.designer ||
-            selectedOptions.artist ||
-            selectedOptions.year ||
-            selectedOptions.genre) && <CoverGrid covers={searchCovers} />}
-        </>
-      )}
+            {/* FOR SEARCHING */}
+            {(searchTerm ||
+              selectedOptions.designer ||
+              selectedOptions.artist ||
+              selectedOptions.year ||
+              selectedOptions.genre) && <CoverGrid covers={searchCovers} />}
+          </>
+        )}
+      </>
     </div>
   );
 }
