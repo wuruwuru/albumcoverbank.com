@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
+import { useFetchAllCovers, useFetchSearch } from "../../hooks/fetch";
 
 // CSS IMPORT
 import classes from "./CoverBank.module.scss";
 
 // IMPORT COMPONENTS
 import CoverGrid from "./CoverGrid";
-import { useFetchAllCovers, useFetchSearch } from "../../hooks/fetch";
 import SearchBar from "../../components/searchBar/SearchBar";
+import SelectedFilter from "./SelectedFilter";
 
 export default function CoverBank() {
   const [covers, setCovers] = useState([]);
@@ -61,16 +62,30 @@ export default function CoverBank() {
   return (
     <div className={classes.CoverBank}>
       <>
+        {/* HEADER */}
         <div className={classes.CoverBankHeader}>
           <p>Explore Nigerian Album Covers</p>
           <h2>5246 Covers</h2>
         </div>
 
+        {/* SEARCH BAR */}
         <SearchBar
           setSearchTerm={setSearchTerm}
           setSelectedOptions={setSelectedOptions}
         />
 
+        {/* FILTERING CATEGORIES */}
+        {/* {(selectedOptions.designer ||
+          selectedOptions.artist ||
+          selectedOptions.year ||
+          selectedOptions.genre) && ( */}
+        <SelectedFilter
+          selectedOptions={selectedOptions}
+          setSelectedOptions={setSelectedOptions}
+        />
+        {/* )} */}
+
+        {/* COVER GRID */}
         {status === "success" && (
           <>
             {!searchTerm &&
