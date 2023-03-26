@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 
 // STYLE IMPORT
-import classes from "./SearchBar.module.css";
+import classes from "./SearchBar.module.scss";
 
 // IMAGE IMPORTS
 import SearchIcon from "../../assets/searchIcon.webp";
 import FilterIcon from "../../assets/filterIcon.webp";
-import SearchFilter from "./SearchFilter";
+import SearchFilter from "../searchFilter/SearchFilter";
 
 export default function SearchBar({ setSearchTerm, setSelectedOptions }) {
   const [isShowing, setIsShowing] = useState(false);
@@ -20,16 +20,18 @@ export default function SearchBar({ setSearchTerm, setSelectedOptions }) {
   };
 
   return (
-    <div className={classes.SearchBar}>
-      <img src={SearchIcon} alt="search" />
-      <input
-        type="text"
-        name="search"
-        autoComplete="off"
-        placeholder="Search"
-        onChange={(e) => setSearchTerm(capitalizeWord(e.target.value))}
-      />
-      <img src={FilterIcon} alt="filter" onClick={() => setIsShowing(true)} />
+    <div className={classes.SearchContainer}>
+      <div className={classes.SearchBar}>
+        <img src={SearchIcon} alt="search" />
+        <input
+          type="text"
+          name="search"
+          autoComplete="off"
+          placeholder="Search"
+          onChange={(e) => setSearchTerm(capitalizeWord(e.target.value))}
+        />
+        <img src={FilterIcon} alt="filter" onClick={() => setIsShowing(true)} />
+      </div>
 
       {/* FILTER DROPDOWN */}
       {isShowing && (

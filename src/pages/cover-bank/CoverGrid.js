@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 // CSS IMPORT
-import classes from "./CoverBank.module.css";
+import classes from "./CoverBank.module.scss";
 
 export default function CoverGrid({ covers }) {
   const navigate = useNavigate();
@@ -15,7 +15,12 @@ export default function CoverGrid({ covers }) {
             key={cover.id}
             onClick={() => navigate(`/cover-bank/${cover.id}`)}
           >
-            <img src={cover?.fields?.Cover[0]?.thumbnails?.full?.url} alt="album cover" />
+            <figure>
+              <img
+                src={cover?.fields?.Cover[0]?.thumbnails?.full?.url}
+                alt="album cover"
+              />
+            </figure>
             <p> {cover?.fields?.Album} </p>
             <span>{cover.fields["Designers copy"]}</span>
           </div>

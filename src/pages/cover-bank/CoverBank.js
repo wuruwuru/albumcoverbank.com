@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 // CSS IMPORT
-import classes from "./CoverBank.module.css";
+import classes from "./CoverBank.module.scss";
 
 // IMPORT COMPONENTS
 import CoverGrid from "./CoverGrid";
@@ -20,7 +20,7 @@ export default function CoverBank() {
     genre: "",
   });
 
-  let pageSize = 12;
+  let pageSize = 15;
 
   // FETCH FROM ALL COVERS FROM AIRTABLE
   const { status, data: allCovers } = useFetchAllCovers(offset, pageSize, "");

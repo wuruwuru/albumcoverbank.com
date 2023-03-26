@@ -1,0 +1,51 @@
+@import "../../styles/utils/variables";
+
+.SearchContainer {
+  margin: 0 auto 6.4rem;
+  width: 88rem;
+}
+
+.SearchBar {
+  display: grid;
+  place-items: center;
+  position: relative;
+  width: 100%;
+
+  input {
+    width: 100%;
+    background: #f7f7f7;
+    border: 0.2rem solid #d2d2d2;
+    border-radius: 1.2rem;
+    box-sizing: border-box;
+    font-family: &inter-family;
+    padding: 0 5rem;
+    height: 5rem;
+    font-size: 1.6rem;
+
+    &::placeholder {
+      font-weight: 400;
+      font-size: 1.6rem;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  img {
+    position: absolute;
+    width: 2rem;
+    height: 2rem;
+
+    &:nth-child(1) {
+      left: 2.3rem;
+      top: 1.4rem;
+    }
+
+    &:nth-child(3) {
+      right: 2.3rem;
+      top: 1.4rem;
+      cursor: pointer;
+    }
+  }
+}

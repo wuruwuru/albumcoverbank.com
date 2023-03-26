@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import classes from "./CoverBank.module.css";
+import classes from "./CoverBank.module.scss";
 import fela from "../../assets/sample.png"
 import LikeIcon from "../../assets/likeIcon.png"
 import ShareIcon from "../../assets/shareIcon.png"

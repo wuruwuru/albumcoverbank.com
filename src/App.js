@@ -1,5 +1,5 @@
 // STYLES
-import "./App.css";
+import "../src/styles/App.scss";
 
 // IMPORTS
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
@@ -9,11 +9,9 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 
 // PAGES AND COMPONENTS
-import Navbar from "./components/Navbar";
-import Home from "./pages/home/Home";
+import Navbar from "./components/navBar/Navbar";
 import CoverBank from "./pages/cover-bank/CoverBank";
 import About from "./pages/about/About";
-import Stories from "./pages/stories/Stories";
 import SingleCover from "./pages/cover-bank/SingleCover";
 
 library.add(fas);
@@ -25,10 +23,8 @@ function App() {
         <Navbar />
         <div className="App-container">
           <Routes>
-            <Route exact path="/" element={<Home />} />
-            <Route path="/cover-bank" element={<CoverBank />} />
+            <Route exact path="/" element={<CoverBank />} />
             <Route path="/about" element={<About />} />
-            <Route path="/stories" element={<Stories />} />
             <Route path="/cover-bank/:id" element={<SingleCover />} />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
