@@ -1,0 +1,41 @@
+.Navbar {
+  width: 95%;
+  margin: 4.09rem auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  ul {
+    display: flex;
+    gap: 3.3rem;
+  }
+
+  a {
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: #464646;
+    &:hover {
+      color: #683522;
+    }
+  }
+
+  .Logo {
+    width: 8.4rem;
+    height: 8.1rem;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
+
+.active {
+  // display: none;
+  color: #683522;
+
+  .Navbar & {
+    color: #683522;
+  }
+}
