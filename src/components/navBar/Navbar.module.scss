@@ -1,4 +1,5 @@
 @import "../../styles/utils/responsive";
+@import "../../styles/shared/links";
 
 .Navbar {
   width: 95%;
@@ -19,14 +20,22 @@
     @include media("<=phone") {
       gap: 0;
     }
-  }
 
-  a {
-    font-size: 1.6rem;
-    font-weight: 500;
-    color: #464646;
-    &:hover {
-      color: #683522;
+    a {
+      @extend %link--hidden;
+
+      font-size: 1.6rem;
+      font-weight: 500;
+      color: #464646;
+      padding-bottom: 0.5rem;
+
+      @include media("<=phone") {
+        padding-bottom: 0.3rem;
+      }
+
+      &:hover {
+        color: #683522;
+      }
     }
   }
 
@@ -51,7 +60,7 @@
   color: #683522;
 
   @include media("<=phone") {
-    display: none;
+    display: none !important;
   }
 
   .Navbar & {

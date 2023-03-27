@@ -8,7 +8,7 @@ import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Navbar from "./components/navBar/Navbar";
 import CoverBank from "./pages/cover-bank/CoverBank";
 import About from "./pages/about/About";
-import SingleCover from "./pages/cover-bank/SingleCover";
+import SingleCover from "./pages/single-cover/SingleCover";
 import Footer from "./components/footer/Footer";
 
 function App() {
