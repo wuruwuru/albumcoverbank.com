@@ -1,0 +1,48 @@
+@import "../../styles/utils/responsive";
+
+.about {
+  height: 100%;
+  margin: 4.09rem 16.7rem 0;
+
+  @include media("<=phone") {
+    width: 90%;
+    margin: 4rem auto 0;
+  }
+
+  h2 {
+    font-size: 3.2rem;
+    font-weight: 600;
+    color: #683522;
+    margin-bottom: 2.4rem;
+    text-transform: uppercase;
+
+    @include media("<=phone") {
+      text-align: center;
+      font-size: 1.6rem;
+      margin-bottom: 4rem;
+    }
+  }
+  .aboutWrapper {
+    max-width: 44.6rem;
+    margin-bottom: 15.4rem;
+
+    p {
+      font-size: 1.6rem;
+      font-weight: 500;
+      margin: 2rem 0;
+      line-height: 2.4rem;
+
+      @include media("<=phone") {
+        font-weight: 400;
+      }
+
+      &:first-child {
+        margin-top: 0;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
