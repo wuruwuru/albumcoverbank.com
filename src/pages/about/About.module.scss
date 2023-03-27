@@ -14,12 +14,12 @@
     font-weight: 600;
     color: #683522;
     margin-bottom: 2.4rem;
-    text-transform: uppercase;
 
     @include media("<=phone") {
       text-align: center;
       font-size: 1.6rem;
       margin-bottom: 4rem;
+      text-transform: uppercase;
     }
   }
   .aboutWrapper {
