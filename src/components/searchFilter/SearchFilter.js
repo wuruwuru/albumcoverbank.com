@@ -9,6 +9,7 @@ import { colourStyles } from "./SelectDropdownStyles";
 
 // IMAGE IMPORT
 import Close from "../../assets/closeIcon.webp";
+import Logo from "../../assets/logo.svg";
 
 export default function SearchFilter({
   setIsShowing,
@@ -81,6 +82,9 @@ export default function SearchFilter({
             }}
           />
         </div>
+
+        {/* LOGO FOR MOBILE  */}
+        <img className={classes.mobileLogo} src={Logo} alt="cover bank logo" />
 
         {/* BODY */}
         <div className={classes.FormBody}>

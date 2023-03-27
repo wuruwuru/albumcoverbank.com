@@ -33,7 +33,7 @@ export const colourStyles = {
     return {
       ...defaultStyles,
       fontSize: "1.4rem",
-      // color: "#4C4C4C",
+      color: "#4C4C4C",
     };
   },
 
@@ -45,7 +45,7 @@ export const colourStyles = {
       borderColor: "#cccccc",
     },
     height: "4.2rem",
-    width: "27rem",
+    width: "26rem",
     borderRadius: "0.4rem",
   }),
 
