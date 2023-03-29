@@ -47,6 +47,7 @@
     height: 20.4rem;
     width: 20.2rem;
     position: relative;
+    cursor: pointer;
 
     @include media("<=phone") {
       height: 15.4rem;

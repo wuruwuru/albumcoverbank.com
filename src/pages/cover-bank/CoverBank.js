@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useFetchAllCovers, useFetchSearch } from "../../hooks/fetch";
 
 // CSS IMPORT
@@ -8,8 +8,9 @@ import classes from "./CoverBank.module.scss";
 import CoverGrid from "./CoverGrid";
 import SearchBar from "../../components/searchBar/SearchBar";
 import SelectedFilter from "./SelectedFilter";
+import SingleCover from "../single-cover/SingleCover";
 
-export default function CoverBank() {
+export default function CoverBank({ setIsScrollable }) {
   const [covers, setCovers] = useState([]);
   const [searchCovers, setSearchCovers] = useState([]);
   const [offset, setOffset] = useState("");
@@ -20,8 +21,13 @@ export default function CoverBank() {
     year: "",
     genre: "",
   });
+  const [selctedCover, setSelectedCover] = useState({});
 
   let pageSize = 15;
+
+  // ANIMATION REFS
+  const imgRef = useRef();
+  const wrapperRef = useRef();
 
   // FETCH FROM ALL COVERS FROM AIRTABLE
   const { status, data: allCovers } = useFetchAllCovers(offset, pageSize, "");
@@ -32,6 +38,10 @@ export default function CoverBank() {
     searchTerm,
     selectedOptions
   );
+
+  useEffect(() => {
+    setIsScrollable(true);
+  }, []);
 
   useEffect(() => {
     // ADD SCROLL EVENT TO WINDOW AND SET OFFSET
@@ -60,49 +70,76 @@ export default function CoverBank() {
   };
 
   return (
-    <div className={classes.CoverBank}>
-      <>
-        {/* HEADER */}
-        <div className={classes.CoverBankHeader}>
-          <p>Explore Nigerian Album Covers</p>
-          <h2>5246 Covers</h2>
-        </div>
+    <>
+      <div className={classes.CoverBank} ref={wrapperRef}>
+        <>
+          {/* HEADER */}
+          <div className={classes.CoverBankHeader}>
+            <p>Explore Nigerian Album Covers</p>
+            <h2>5246 Covers</h2>
+          </div>
 
-        {/* SEARCH BAR */}
-        <SearchBar
-          setSearchTerm={setSearchTerm}
-          setSelectedOptions={setSelectedOptions}
-        />
+          {/* SEARCH BAR */}
+          <SearchBar
+            setSearchTerm={setSearchTerm}
+            setSelectedOptions={setSelectedOptions}
+          />
 
-        {/* FILTERING CATEGORIES */}
-        {/* {(selectedOptions.designer ||
+          {/* FILTERING CATEGORIES */}
+          {/* {(selectedOptions.designer ||
           selectedOptions.artist ||
           selectedOptions.year ||
           selectedOptions.genre) && ( */}
-        <SelectedFilter
-          selectedOptions={selectedOptions}
-          setSelectedOptions={setSelectedOptions}
+          <SelectedFilter
+            selectedOptions={selectedOptions}
+            setSelectedOptions={setSelectedOptions}
+          />
+          {/* )} */}
+
+          {/* COVER GRID */}
+          {status === "success" && (
+            <>
+              {!searchTerm &&
+                !selectedOptions.designer &&
+                !selectedOptions.artist &&
+                !selectedOptions.year &&
+                !selectedOptions.genre && (
+                  <CoverGrid
+                    covers={covers}
+                    setSelectedCover={setSelectedCover}
+                    imgRef={imgRef}
+                    wrapperRef={wrapperRef}
+                    setIsScrollable={setIsScrollable}
+                  />
+                )}
+
+              {/* FOR SEARCHING */}
+              {(searchTerm ||
+                selectedOptions.designer ||
+                selectedOptions.artist ||
+                selectedOptions.year ||
+                selectedOptions.genre) && (
+                <CoverGrid
+                  covers={searchCovers}
+                  setSelectedCover={setSelectedCover}
+                  imgRef={imgRef}
+                  wrapperRef={wrapperRef}
+                  setIsScrollable={setIsScrollable}
+                />
+              )}
+            </>
+          )}
+        </>
+      </div>
+
+      {/* SELECTED COVER */}
+      {Object.keys(selctedCover).length && (
+        <SingleCover
+          cover={selctedCover}
+          setSelectedCover={setSelectedCover}
+          setIsScrollable={setIsScrollable}
         />
-        {/* )} */}
-
-        {/* COVER GRID */}
-        {status === "success" && (
-          <>
-            {!searchTerm &&
-              !selectedOptions.designer &&
-              !selectedOptions.artist &&
-              !selectedOptions.year &&
-              !selectedOptions.genre && <CoverGrid covers={covers} />}
-
-            {/* FOR SEARCHING */}
-            {(searchTerm ||
-              selectedOptions.designer ||
-              selectedOptions.artist ||
-              selectedOptions.year ||
-              selectedOptions.genre) && <CoverGrid covers={searchCovers} />}
-          </>
-        )}
-      </>
-    </div>
+      )}
+    </>
   );
 }

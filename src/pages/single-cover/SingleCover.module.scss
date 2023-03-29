@@ -1,117 +1,148 @@
+@import "../../styles/utils/responsive";
+
 // SINGLE COVER
 .singleCover {
-    display: flex;
-    flex-direction: row;
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 2;
+  background-color: white;
+
+  @include media("<=phone") {
+    overflow: scroll;
+    position: absolute;
+    height: auto;
   }
-  
-  .singleCover .singleDiv {
-    height: 525px;
-    width: 991px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
+
+  .close {
+    position: absolute;
+    top: 3rem;
+    right: 3rem;
+    cursor: pointer;
+    width: 4rem;
+    height: 4rem;
+
+    @include media("<=phone") {
+      top: 1.5rem;
+      right: 1.5rem;
+    }
   }
-  
-  .singleDiv .imgDiv {
-    width: 340px;
-    height: 340px;
-  }
-  
-  .singleDiv .textDiv {
-    height: 340px;
-    display: flex;
+}
+
+.coverWrapper {
+  display: flex;
+  position: relative;
+  background: #faf6f3;
+  width: 100.1rem;
+  max-height: 52.5rem;
+  gap: 6rem;
+  padding: 6.2rem;
+  margin-top: 13rem;
+  border-radius: 1.6rem;
+
+  @include media("<=phone") {
+    width: 90%;
+    max-height: 100rem;
+    height: fit-content;
     flex-direction: column;
-    justify-content: space-between;
+    gap: 3.4rem;
+    padding: 6.2rem 1.5rem;
   }
-  
-  .imgDiv img {
-    width: 100%;
-    object-fit: contain;
+
+  figure {
+    width: 34rem;
+    height: 34rem;
+    position: relative;
+
+    @include media("<=phone") {
+      margin-top: 2rem;
+      width: 32rem;
+      height: 32rem;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      // position: absolute;
+      // top: 0;
+      // bottom: 0;
+    }
   }
-  
-  .textDiv p:nth-child(1) {
-    font-size: 40px;
-    font-weight: 600;
-    line-height: 28px;
+
+  .textContainer {
+    max-width: calc(90% - 34rem);
+    padding-top: 2rem;
+
+    @include media("<=phone") {
+      max-width: 100%;
+    }
+
+    h2 {
+      font-size: 3.5rem;
+      font-weight: 600;
+      color: #171717;
+      padding-bottom: 4rem;
+
+      @include media("<=phone") {
+        font-size: 2.2rem;
+        padding-bottom: 2.5rem;
+      }
+    }
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+    }
+
+    li {
+      display: flex;
+      gap: 6.8rem;
+
+      p {
+        font-size: 1.8rem;
+        font-weight: 500;
+        max-width: 4rem;
+        text-transform: uppercase;
+
+        @include media("<=phone") {
+          font-size: 1.6rem;
+        }
+      }
+
+      span {
+        color: #464646;
+        font-size: 1.8rem;
+        font-weight: 400;
+
+        @include media("<=phone") {
+          font-size: 1.6rem;
+        }
+
+        ul {
+          display: flex;
+          flex-direction: row;
+          gap: 1rem;
+
+          li {
+            display: inline;
+          }
+
+          li:not(:last-child)::after {
+            content: ",";
+            padding: 0;
+            margin: 0;
+            display: inline;
+          }
+        }
+      }
+    }
   }
-  
-  .textDiv ul {
-    width: 401px;
-    height: 144px;
-    display: flex;
-    flex-direction: column;
-    padding: 0px;
-    justify-content: space-between;
-    margin-top: 40px;
-    gap: 10px;
-  }
-  
-  .textDiv ul li {
-    text-transform: uppercase;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 24px;
-  }
-  .textDiv ul li span {
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 24px;
-    color: #464646;
-    text-transform: capitalize;
-    margin-left: 1rem;
-    text-align: left;
-  }
-  .iconDiv {
-    display: flex;
-    flex-direction: row;
-    gap: 8px;
-  }
-  .iconDiv .likeDiv {
-    width: 76px;
-    height: 40px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    background: #683522;
-    border-radius: 4px;
-    gap: 11px;
-  }
-  
-  .iconDiv .likeDiv img {
-    width: 20.9px;
-    height: 19.9px;
-  }
-  .iconDiv .likeDiv p {
-    width: 18px;
-    height: 24px;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 24px;
-    color: #ffffff;
-  }
-  
-  .iconDiv .shareDiv {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    width: 101px;
-    height: 40px;
-    border: 1.5px solid #171717;
-    border-radius: 4px;
-  }
-  .singleCover aside {
-    height: 525px;
-    width: 315px;
-    background: #fbf9f8;
-  }
-  
-  aside img {
-    width: 77.13px;
-    height: 67px;
-  }
+}

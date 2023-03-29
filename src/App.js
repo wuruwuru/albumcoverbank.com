@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 // STYLES
 import "../src/styles/App.scss";
 
@@ -12,13 +14,18 @@ import SingleCover from "./pages/single-cover/SingleCover";
 import Footer from "./components/footer/Footer";
 
 function App() {
+  const [isScrollable, setIsScrollable] = useState(true);
   return (
-    <div className="App">
+    <div className={isScrollable ? "App" : " hideScroll"}>
       <BrowserRouter>
         <Navbar />
         <div className="App-container">
           <Routes>
-            <Route exact path="/" element={<CoverBank />} />
+            <Route
+              exact
+              path="/"
+              element={<CoverBank setIsScrollable={setIsScrollable} />}
+            />
             <Route path="/about" element={<About />} />
             <Route path="/cover-bank/:id" element={<SingleCover />} />
             <Route path="*" element={<Navigate to="/" />} />

@@ -28,6 +28,7 @@
       font-weight: 500;
       color: #464646;
       padding-bottom: 0.5rem;
+      z-index: 3;
 
       @include media("<=phone") {
         padding-bottom: 0.3rem;
@@ -42,6 +43,7 @@
   .Logo {
     width: 8.4rem;
     height: 8.1rem;
+    z-index: 3;
 
     @include media("<=phone") {
       width: 6.9rem;
