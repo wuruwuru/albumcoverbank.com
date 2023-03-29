@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 
 // STYLES
 import "../src/styles/App.scss";
 
 // IMPORTS
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 
 // PAGES AND COMPONENTS
 import Navbar from "./components/navBar/Navbar";
@@ -15,23 +16,30 @@ import Footer from "./components/footer/Footer";
 
 function App() {
   const [isScrollable, setIsScrollable] = useState(true);
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    if (pathname === "/about") {
+      setIsScrollable(true);
+    }
+  }, [pathname]);
+
   return (
     <div className={isScrollable ? "App" : " hideScroll"}>
-      <BrowserRouter>
-        <Navbar />
-        <div className="App-container">
-          <Routes>
-            <Route
-              exact
-              path="/"
-              element={<CoverBank setIsScrollable={setIsScrollable} />}
-            />
-            <Route path="/about" element={<About />} />
-            <Route path="/cover-bank/:id" element={<SingleCover />} />
-            <Route path="*" element={<Navigate to="/" />} />
-          </Routes>
-        </div>
-      </BrowserRouter>
+      <Navbar />
+      <div className="App-container">
+        <Routes>
+          <Route
+            exact
+            path="/"
+            element={<CoverBank setIsScrollable={setIsScrollable} />}
+          />
+          <Route path="/about" element={<About />} />
+          <Route path="/cover-bank/:id" element={<SingleCover />} />
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+      </div>
+
       <Footer />
     </div>
   );

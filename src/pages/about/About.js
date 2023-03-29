@@ -1,12 +1,14 @@
 import React from "react";
 import classes from "./About.module.scss";
 
+import { contributors } from "../../data/Contributors";
+
 export default function about() {
   return (
     <div className={classes.about}>
-      <h2> About</h2>
-
       <div className={classes.aboutWrapper}>
+        <h2> About</h2>
+
         <p>
           Music is a bedrock of Nigerian culture and album covers are a new
           perspective into this massice cultural export.
@@ -26,6 +28,20 @@ export default function about() {
           The project is run by a group of friends and directed by wuruwuru.
         </p>
       </div>
+
+      {/* CONTRIBUTORS */}
+      <aside className={classes.contributors}>
+        <h3>Contributors</h3>
+        {contributors.map((contributor) => (
+          <div className={classes.contributorContainer} key={contributor.name}>
+            <img src={contributor.image} alt={contributor.name} />
+            <div className={classes.textContainer}>
+              <p>{contributor.name}</p>
+              <span>{contributor.role}</span>
+            </div>
+          </div>
+        ))}
+      </aside>
     </div>
   );
 }
