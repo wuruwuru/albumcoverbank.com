@@ -9,13 +9,3 @@
 //   max-width: 1500px;
 //   margin: auto;
 // }
-@import "./utils/responsive";
-
-.hideScroll {
-  height: 100vh;
-  overflow-y: hidden;
-
-  @include media("<=phone") {
-    overflow-y: scroll;
-  }
-}

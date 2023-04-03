@@ -10,7 +10,7 @@ export default function CoverGrid({
   imgRef,
   wrapperRef,
   setSelectedCover,
-  setIsScrollable,
+  setOpenModal,
 }) {
   const navigate = useNavigate();
 
@@ -26,7 +26,7 @@ export default function CoverGrid({
                   alt="album cover"
                   onClick={() => {
                     setSelectedCover(cover);
-                    setIsScrollable(false);
+                    setOpenModal(true);
                     new App({ figure: imgRef, wrapper: wrapperRef });
                   }}
                 />

@@ -10,7 +10,7 @@ import SearchBar from "../../components/searchBar/SearchBar";
 import SelectedFilter from "./SelectedFilter";
 import SingleCover from "../single-cover/SingleCover";
 
-export default function CoverBank({ setIsScrollable }) {
+export default function CoverBank() {
   const [covers, setCovers] = useState([]);
   const [searchCovers, setSearchCovers] = useState([]);
   const [offset, setOffset] = useState("");
@@ -21,7 +21,8 @@ export default function CoverBank({ setIsScrollable }) {
     year: "",
     genre: "",
   });
-  const [selctedCover, setSelectedCover] = useState({});
+  const [selectedCover, setSelectedCover] = useState({});
+  const [openModal, setOpenModal] = useState(false);
 
   let pageSize = 15;
 
@@ -38,10 +39,6 @@ export default function CoverBank({ setIsScrollable }) {
     searchTerm,
     selectedOptions
   );
-
-  useEffect(() => {
-    setIsScrollable(true);
-  }, []);
 
   useEffect(() => {
     // ADD SCROLL EVENT TO WINDOW AND SET OFFSET
@@ -71,7 +68,13 @@ export default function CoverBank({ setIsScrollable }) {
 
   return (
     <>
-      <div className={classes.CoverBank} ref={wrapperRef}>
+      <div
+        className={classes.CoverBank}
+        ref={wrapperRef}
+        style={{
+          filter: openModal ? "blur(0.4rem)" : "",
+        }}
+      >
         <>
           {/* HEADER */}
           <div className={classes.CoverBankHeader}>
@@ -107,9 +110,10 @@ export default function CoverBank({ setIsScrollable }) {
                   <CoverGrid
                     covers={covers}
                     setSelectedCover={setSelectedCover}
+                    selectedCover={selectedCover}
+                    setOpenModal={setOpenModal}
                     imgRef={imgRef}
                     wrapperRef={wrapperRef}
-                    setIsScrollable={setIsScrollable}
                   />
                 )}
 
@@ -122,9 +126,9 @@ export default function CoverBank({ setIsScrollable }) {
                 <CoverGrid
                   covers={searchCovers}
                   setSelectedCover={setSelectedCover}
+                  setOpenModal={setOpenModal}
                   imgRef={imgRef}
                   wrapperRef={wrapperRef}
-                  setIsScrollable={setIsScrollable}
                 />
               )}
             </>
@@ -133,12 +137,8 @@ export default function CoverBank({ setIsScrollable }) {
       </div>
 
       {/* SELECTED COVER */}
-      {Object.keys(selctedCover).length && (
-        <SingleCover
-          cover={selctedCover}
-          setSelectedCover={setSelectedCover}
-          setIsScrollable={setIsScrollable}
-        />
+      {openModal && (
+        <SingleCover cover={selectedCover} setOpenModal={setOpenModal} />
       )}
     </>
   );

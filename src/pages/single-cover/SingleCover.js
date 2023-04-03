@@ -5,14 +5,7 @@ import classes from "./SingleCover.module.scss";
 // IMAGE IMPORT
 import Close from "../../assets/CircularCloseButton.svg";
 
-// COMPONENT
-import Footer from "../../components/footer/Footer";
-
-export default function SingleCover({
-  cover,
-  setSelectedCover,
-  setIsScrollable,
-}) {
+export default function SingleCover({ cover, setOpenModal }) {
   // const { id } = useParams();
 
   return (
@@ -23,8 +16,7 @@ export default function SingleCover({
           src={Close}
           alt="close"
           onClick={() => {
-            setIsScrollable(true);
-            setSelectedCover({});
+            setOpenModal(false);
           }}
         />
         <figure className={classes.imgContainer}>
@@ -61,8 +53,6 @@ export default function SingleCover({
           </ul>
         </div>
       </div>
-
-      <Footer />
 
       {/* <aside>
         <div>
