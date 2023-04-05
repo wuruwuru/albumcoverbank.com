@@ -34,7 +34,7 @@ export default function SingleCover({ cover, setOpenModal }) {
             </li>
             <li>
               <p> Designer</p>
-              <span>{cover?.fields["Designers copy"]}</span>
+              <span>{cover?.fields?.DesignerWebsite}</span>
             </li>
             <li>
               <p> Year</p>
