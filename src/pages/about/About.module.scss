@@ -15,7 +15,7 @@
   h2 {
     font-size: 3.2rem;
     font-weight: 600;
-    color: #000;
+    color: #683522;
     margin-bottom: 2.4rem;
 
     @include media("<=phone") {
@@ -31,10 +31,10 @@
     }
 
     p {
-      font-size: 3.2rem;
+      font-size: 1.6rem;
       font-weight: 500;
       margin: 2rem 0;
-      line-height: 4.8rem;
+      line-height: 2.4rem;
 
       @include media("<=phone") {
         font-weight: 400;
