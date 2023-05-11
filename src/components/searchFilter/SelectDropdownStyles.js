@@ -46,7 +46,7 @@ export const colourStyles = {
     },
     height: "4.2rem",
     width: "26rem",
-    borderRadius: "0.4rem",
+    borderRadius: "1.2rem",
   }),
 
   dropdownIndicator: (styles) => ({

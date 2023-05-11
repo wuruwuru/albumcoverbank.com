@@ -25,7 +25,7 @@ export default function Navbar() {
             }
             to="/"
           >
-            Cover Bank
+            Covers
           </NavLink>
         </li>
 
@@ -38,6 +38,17 @@ export default function Navbar() {
           >
             About
           </NavLink>
+        </li>
+        <li>
+          <a
+            className={({ isActive }) =>
+              isActive ? `${classes.active}` : `${classes.inactive}`
+            }
+          href="https://airtable.com"
+          target="_blank"
+          >
+            Submit
+          </a>
         </li>
       </ul>
     </nav>

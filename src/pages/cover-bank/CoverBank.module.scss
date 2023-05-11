@@ -45,13 +45,12 @@
 
   figure {
     height: 20.4rem;
-    width: 20.2rem;
+    width: 100%;
     position: relative;
     cursor: pointer;
 
     @include media("<=phone") {
       height: 15.4rem;
-      width: 16.4rem;
     }
   }
 
@@ -65,13 +64,17 @@
   }
 
   p {
-    margin: 1.8rem 0 0.5rem;
+    margin: 1.8rem 0;
     font-size: 1.6rem;
     font-weight: 500;
     color: #171717;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
     @include media("<=phone") {
       font-size: 1.4rem;
+      width: 211px;
     }
   }
 

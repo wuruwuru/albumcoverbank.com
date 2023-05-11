@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import classes from "./SelectedFilter.module.scss";
 
 // IMAGE IMPORT
@@ -26,6 +26,7 @@ export default function SelectedFilter({
       value: selectedOptions.designer,
     },
   ];
+
 
   const removeSpecificFilters = (title) => {
     switch (title) {
@@ -63,6 +64,12 @@ export default function SelectedFilter({
               <img
                 src={Close}
                 alt="clear filter option"
+                loading="lazy"
+                // className="lazy"
+                // data-src="https://via.placeholder.com/240x240"
+                // data-srcset="https://via.placeholder.com/240x240"
+                width="235"
+                height="235"
                 onClick={() => removeSpecificFilters(filter.title)}
               />
             </div>

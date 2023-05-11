@@ -44,7 +44,7 @@
   box-sizing: border-box;
   background: #fdfdfd;
   box-shadow: -4px 6px 12px rgba(0, 0, 0, 0.2);
-  border-radius: 0.4rem;
+  border-radius: 1.2rem;
   height: 30.9rem;
 
   @include media("<=phone") {
@@ -170,7 +170,7 @@
   .inputContainer {
     height: 4.2rem;
     width: 26rem;
-    border-radius: 0.4rem;
+    border-radius: 1.2rem;
     font-size: 1.4rem;
     color: $text-color;
   }
@@ -198,6 +198,7 @@
 
   .resetBtn {
     border: 1px solid #d2d2d2;
+    border-radius: 1.2rem;
     color: #706868;
     display: grid;
     place-items: center;
@@ -206,6 +207,7 @@
   .applyBtn {
     background: #41312c;
     border: none;
+    border-radius: 1.2rem;
     color: #fdfdfd;
   }
 }

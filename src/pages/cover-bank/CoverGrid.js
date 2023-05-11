@@ -32,7 +32,7 @@ export default function CoverGrid({
                 />
               </figure>
               <p> {cover?.fields?.Album} </p>
-              <span>{cover.fields["Designers copy"]}</span>
+              <span>{cover.fields["Designers copy"]?cover.fields["Designers copy"]:"N/A"}</span>
             </div>
           ))}
       </div>

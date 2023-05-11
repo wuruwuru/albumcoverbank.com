@@ -23,7 +23,7 @@ export default function CoverBank() {
   });
   const [selectedCover, setSelectedCover] = useState({});
   const [openModal, setOpenModal] = useState(false);
-
+  const [isLoading, setIsLoading] = useState(false);
   let pageSize = 15;
 
   // ANIMATION REFS
@@ -61,8 +61,10 @@ export default function CoverBank() {
     const isAtBottom =
       window.innerHeight + window.pageYOffset >= document.body.offsetHeight;
     if (isAtBottom) {
+      setIsLoading(true)
       setOffset(allCovers.offset);
       setCovers([...covers, ...allCovers.records]);
+      setIsLoading(false)
     }
   };
 
@@ -79,7 +81,7 @@ export default function CoverBank() {
           {/* HEADER */}
           <div className={classes.CoverBankHeader}>
             <p>Explore Nigerian Album Covers</p>
-            <h2>5246 Covers</h2>
+            <h2>{searchCovers?.length} Covers</h2>
           </div>
 
           {/* SEARCH BAR */}
@@ -98,9 +100,9 @@ export default function CoverBank() {
             setSelectedOptions={setSelectedOptions}
           />
           {/* )} */}
-
+    {isLoading&& <div>Fetching...</div>}
           {/* COVER GRID */}
-          {status === "success" && (
+          {status === "success" ? (
             <>
               {!searchTerm &&
                 !selectedOptions.designer &&
@@ -132,7 +134,7 @@ export default function CoverBank() {
                 />
               )}
             </>
-          )}
+          ):<div>loading...</div>}
         </>
       </div>
 
