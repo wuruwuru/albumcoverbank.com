@@ -1,4 +1,4 @@
-import { useQuery } from "react-query";
+import { useQuery,QueryCache } from "react-query";
 import axios from "axios";
 // import { useState, useEffect } from "react";
 
@@ -8,7 +8,7 @@ const apiBase = process.env.REACT_APP_API_BASE;
 const config = {
   headers: { Authorization: `Bearer ${apiKey}` },
 };
-
+const queryCache = new QueryCache()
 // FETCH ALL COVERS
 export const useFetchAllCovers = (offset, pageSize, searchTerm) => {
   const fetchAllCover = async () => {
@@ -30,6 +30,7 @@ export const useFetchAllCovers = (offset, pageSize, searchTerm) => {
       refetchOnWindowFocus: true,
       refetchOnMount: true,
       keepPreviousData: true,
+      cache: queryCache
     }
   );
   return { status, data, isFetching, refetch };
