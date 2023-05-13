@@ -32,7 +32,11 @@ export default function CoverBank() {
   const wrapperRef = useRef()
 
   // FETCH FROM ALL COVERS FROM AIRTABLE
-  const { status, data: allCovers,isFetching } = useFetchAllCovers(offset, pageSize, "")
+  const {
+    status,
+    data: allCovers,
+    isFetching,
+  } = useFetchAllCovers(offset, pageSize, "")
 
   // FETCH SEARCH RESULTS
   const { data: allSearch } = useFetchSearch(
@@ -62,10 +66,8 @@ export default function CoverBank() {
     const isAtBottom =
       window.innerHeight + window.pageYOffset >= document.body.offsetHeight
     if (isAtBottom) {
-     
       setOffset(allCovers.offset)
       setCovers([...covers, ...allCovers.records])
-     
     }
   }
 
@@ -101,7 +103,7 @@ export default function CoverBank() {
             setSelectedOptions={setSelectedOptions}
           />
           {/* )} */}
-        
+
           {/* COVER GRID */}
           {status === "success" && (
             <>
@@ -137,7 +139,12 @@ export default function CoverBank() {
             </>
           )}
           {/* FETCHING NEW DATA */}
-            {isFetching && <div className={classes.LogoWrapper}> <img src={Logo} alt="cover bank logo" /></div>}
+          {isFetching && (
+            <div className={classes.LogoWrapper}>
+              {" "}
+              <img src={Logo} alt="cover bank logo" />
+            </div>
+          )}
         </>
       </div>
 
