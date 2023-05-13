@@ -33,7 +33,7 @@ export default function CoverBank() {
   const wrapperRef = useRef()
 
   // FETCH FROM ALL COVERS FROM AIRTABLE
-  const { status, data: allCovers } = useFetchAllCovers(offset, pageSize, "")
+  const { status, data: allCovers,isFetching } = useFetchAllCovers(offset, pageSize, "")
 
   // FETCH SEARCH RESULTS
   const { data: allSearch } = useFetchSearch(
@@ -102,9 +102,9 @@ export default function CoverBank() {
             setSelectedOptions={setSelectedOptions}
           />
           {/* )} */}
-          {isLoading && <div>Fetching...</div>}
+        
           {/* COVER GRID */}
-          {status === "success" ? (
+          {status === "success" && (
             <>
               {!searchTerm &&
                 !selectedOptions.designer &&
@@ -136,11 +136,9 @@ export default function CoverBank() {
                 />
               )}
             </>
-          ) : (
-            <div className={classes.LogoWrapper}>
-              <img src={Logo} alt="cover bank logo" />
-            </div>
           )}
+          {/* FETCHING NEW DATA */}
+            {isFetching && <div className={classes.LogoWrapper}> <img src={Logo} alt="cover bank logo" /></div>}
         </>
       </div>
 
