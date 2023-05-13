@@ -25,7 +25,6 @@ export default function CoverBank() {
   })
   const [selectedCover, setSelectedCover] = useState({})
   const [openModal, setOpenModal] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
   let pageSize = 15
 
   // ANIMATION REFS
@@ -63,10 +62,10 @@ export default function CoverBank() {
     const isAtBottom =
       window.innerHeight + window.pageYOffset >= document.body.offsetHeight
     if (isAtBottom) {
-      setIsLoading(true)
+     
       setOffset(allCovers.offset)
       setCovers([...covers, ...allCovers.records])
-      setIsLoading(false)
+     
     }
   }
 
