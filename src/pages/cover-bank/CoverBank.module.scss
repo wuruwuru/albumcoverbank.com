@@ -42,11 +42,7 @@
     grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
     width: 90%;
   }
-  @include media("<=s-phone") {
-   
-    grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
-    
-  }
+
 
   figure {
     height: 20.4rem;
