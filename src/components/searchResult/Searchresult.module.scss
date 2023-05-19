@@ -1,0 +1,31 @@
+@import "../../styles/utils/variables";
+@import "../../styles/utils/responsive";
+
+
+.EmptyWrapper{
+  width: 31%;
+  margin: 6.4rem auto 0;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+      @include media("<=phone") {
+        margin: 4rem auto 0;
+        width: 90%;
+      }
+  }
+
+
+  .TextWrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:10px;
+    flex-direction: column;
+    h3{
+      font-size: 24px;    color: #683522;font-weight: 600;
+    }
+    p{
+      font-size: 18px;
+  }
+  }

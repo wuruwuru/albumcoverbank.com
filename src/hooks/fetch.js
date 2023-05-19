@@ -30,7 +30,9 @@ export const useFetchAllCovers = (offset, pageSize, searchTerm) => {
       refetchOnWindowFocus: true,
       refetchOnMount: true,
       keepPreviousData: true,
-      cache: queryCache
+      refetchInterval:1000,
+      cache: queryCache,
+      staleTime: 1 * 60 * 1000, cacheTime: 5 * 60 * 1000
     }
   );
   return { status, data, isFetching, refetch };

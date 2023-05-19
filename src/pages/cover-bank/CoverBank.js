@@ -7,10 +7,14 @@ import classes from "./CoverBank.module.scss"
 // IMPORT COMPONENTS
 import CoverGrid from "./CoverGrid"
 import SearchBar from "../../components/searchBar/SearchBar"
+
 import SelectedFilter from "./SelectedFilter"
 import SingleCover from "../single-cover/SingleCover"
 // IMAGE IMPORT
 import Logo from "../../assets/logo.svg"
+import { SearchResult } from "../../components/searchResult"
+import { HomeResult } from "../../components/homeResult"
+import { ScrolltoTop } from "../../components/scrollToTop"
 
 export default function CoverBank() {
   const [covers, setCovers] = useState([])
@@ -33,21 +37,21 @@ export default function CoverBank() {
 
   // FETCH FROM ALL COVERS FROM AIRTABLE
   const {
-    status,
+    status: homeStatus,
     data: allCovers,
-    isFetching,
+    isFetching: homeFetch,
   } = useFetchAllCovers(offset, pageSize, "")
 
   // FETCH SEARCH RESULTS
-  const { data: allSearch } = useFetchSearch(
-    offset,
-    searchTerm,
-    selectedOptions
-  )
+  const {
+    status: searchStatus,
+    data: allSearch,
+    isFetching: searchFetch,
+  } = useFetchSearch(offset, searchTerm, selectedOptions)
 
   useEffect(() => {
     // ADD SCROLL EVENT TO WINDOW AND SET OFFSET
-    if (status === "success" && allCovers?.records.length > 1) {
+    if (homeStatus === "success" && allCovers?.records.length > 1) {
       window.addEventListener("scroll", handleScroll)
       setSearchCovers(allSearch?.records)
       // SET INITIAL COVERS ONCE THE COMPONENT MOUNTS
@@ -59,7 +63,7 @@ export default function CoverBank() {
 
     // CALLBACK FUNCTION
     return () => window.removeEventListener("scroll", handleScroll)
-  }, [status, allCovers, allSearch])
+  }, [homeStatus, allCovers, allSearch])
 
   // FUNCTION THAT FIRES ONCE THE USER GETS TO THE BOTTOM OF THE SCREEN
   const handleScroll = async () => {
@@ -105,47 +109,40 @@ export default function CoverBank() {
           {/* )} */}
 
           {/* COVER GRID */}
-          {status === "success" && (
-            <>
-              {!searchTerm &&
-                !selectedOptions.designer &&
-                !selectedOptions.artist &&
-                !selectedOptions.year &&
-                !selectedOptions.genre && (
-                  <CoverGrid
-                    covers={covers}
-                    setSelectedCover={setSelectedCover}
-                    selectedCover={selectedCover}
-                    setOpenModal={setOpenModal}
-                    imgRef={imgRef}
-                    wrapperRef={wrapperRef}
-                  />
-                )}
 
-              {/* FOR SEARCHING */}
-              {(searchTerm ||
-                selectedOptions.designer ||
-                selectedOptions.artist ||
-                selectedOptions.year ||
-                selectedOptions.genre) && (
-                <CoverGrid
-                  covers={searchCovers}
-                  setSelectedCover={setSelectedCover}
-                  setOpenModal={setOpenModal}
-                  imgRef={imgRef}
-                  wrapperRef={wrapperRef}
-                />
-              )}
-            </>
-          )}
-          {/* FETCHING NEW DATA */}
-          {isFetching && (
-            <div className={classes.LogoWrapper}>
-              {" "}
-              <img src={Logo} alt="cover bank logo" />
-            </div>
-          )}
+          <>
+            {!searchTerm &&
+            !selectedOptions.designer &&
+            !selectedOptions.artist &&
+            !selectedOptions.year &&
+            !selectedOptions.genre ? (
+              <HomeResult
+                homeStatus={homeStatus}
+                covers={covers}
+                searchCovers={searchCovers}
+                selectedOptions={selectedOptions}
+                setSelectedCover={setSelectedCover}
+                wrapperRef={wrapperRef}
+                setOpenModal={setOpenModal}
+                imgRef={imgRef}
+                homeFetch={homeFetch}
+              />
+            ) : (
+              <SearchResult
+                searchStatus={searchStatus}
+                searchTerm={searchTerm}
+                searchCovers={searchCovers}
+                selectedOptions={selectedOptions}
+                setSelectedCover={setSelectedCover}
+                wrapperRef={wrapperRef}
+                setOpenModal={setOpenModal}
+                imgRef={imgRef}
+                searchFetch={searchFetch}
+              />
+            )}
+          </>
         </>
+        <ScrolltoTop />
       </div>
 
       {/* SELECTED COVER */}
