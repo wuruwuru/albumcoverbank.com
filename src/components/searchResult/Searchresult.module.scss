@@ -15,7 +15,13 @@
       }
   }
 
-
+.FlexWrapper{
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}
   .TextWrapper{
     display: flex;
     align-items: center;
