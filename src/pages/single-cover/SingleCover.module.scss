@@ -32,7 +32,25 @@
     }
   }
 }
-
+.reportLink{
+  position:absolute;
+  right:3rem;
+  bottom:3rem;
+  font-size:16px;
+  cursor:pointer;
+  text-decoration:underline;
+  color:black;
+}
+.truncate{
+  cursor:pointer;
+  font-style: italic;
+  text-decoration:underline;
+  color:black;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width:35%;
+}
 .coverWrapper {
   display: flex;
   position: relative;

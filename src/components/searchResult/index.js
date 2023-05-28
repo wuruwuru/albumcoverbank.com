@@ -26,8 +26,8 @@ export function SearchResult({searchStatus,searchCovers,setSelectedCover,wrapper
 <path d="M7.28269 17.8723C6.98733 17.5782 6.98733 17.1013 7.28269 16.8072L16.9089 7.2206C17.2043 6.92646 17.6831 6.92647 17.9785 7.2206C18.2738 7.51474 18.2738 7.99164 17.9785 8.28578L8.35227 17.8723C8.05691 18.1665 7.57804 18.1665 7.28269 17.8723Z" fill="#683522"/>
 </svg>
  <h3>Oops no cover matches your search</h3></div>   
-                <p>The cover you’re searching for is not in our database.To fix this, 
-                  check that you typed in the right words or Click the <u>‘submit’ </u>button to contribute this cover to this website</p>   
+              <p> The cover you’re searching for is not in our database.To fix this, kindly check that you typed in the correct words or Click the  <a href="https://forms.gle/Tz1SMwkBRbKvd62JA" target="_blank"><u className={classes.SubmitColor}>‘submit’ </u></a> button to contribute a cover to this website
+  </p>   
                     </div>
                
                 </div>}  </> 

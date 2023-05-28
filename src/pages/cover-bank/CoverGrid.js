@@ -16,7 +16,7 @@ export default function CoverGrid({
   setOpenModal,
 }) {
   const navigate = useNavigate()
-  console.log(covers)
+
   return (
     <>
       <div className={classes.coverGrid}>
@@ -39,11 +39,9 @@ export default function CoverGrid({
                 />
               </figure>
               <p> {cover?.fields?.Album} </p>
-              <span>
-                {cover.fields["Designers copy"]
-                  ? cover.fields["Designers copy"]
-                  : "N/A"}
-              </span>
+              <h4>
+                {cover.fields?.ArtistWebsite}
+              </h4>
             </div>
           ))}
       </div>
