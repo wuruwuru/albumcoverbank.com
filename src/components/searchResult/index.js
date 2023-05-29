@@ -32,6 +32,7 @@ export function SearchResult({searchStatus,searchCovers,setSelectedCover,wrapper
                
                 </div>}  </> 
          
+         
                    {/* FETCHING NEW DATA */}
           {searchFetch && (
          <FetchMoreLoader/>
