@@ -42,6 +42,9 @@
   color:black;
 }
 .truncate{
+  color: #464646;
+  font-size: 1.6rem;
+  font-weight: 400;
   cursor:pointer;
   font-style: italic;
   text-decoration:underline;
@@ -49,7 +52,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width:35%;
+  max-width:20%;
 }
 .coverWrapper {
   display: flex;

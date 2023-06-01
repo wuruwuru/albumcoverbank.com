@@ -9,7 +9,8 @@ export function SearchResult({searchStatus,searchCovers,setSelectedCover,wrapper
     
     return(
 <>
-{searchStatus === "success" && (<>
+{searchStatus === "success" && (
+<>
   {/* FOR SEARCHING */}
    
         <>   {JSON.stringify([]) !== JSON.stringify(searchCovers) ? <CoverGrid
@@ -18,7 +19,8 @@ export function SearchResult({searchStatus,searchCovers,setSelectedCover,wrapper
                   setOpenModal={setOpenModal}
                   imgRef={imgRef}
                   wrapperRef={wrapperRef}
-                />:   <div className={classes.EmptyWrapper}>
+                />:  
+                 <div className={classes.EmptyWrapper}>
                     <div className={classes.TextWrapper}>
                   <div className={classes.FlexWrapper}><svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M22.0965 20.1475L28 26.0496L26.0496 28L20.1475 22.0965C17.9514 23.857 15.2199 24.8145 12.4052 24.8105C5.55755 24.8105 0 19.2529 0 12.4052C0 5.55755 5.55755 0 12.4052 0C19.2529 0 24.8105 5.55755 24.8105 12.4052C24.8145 15.2199 23.857 17.9514 22.0965 20.1475ZM19.3315 19.1247C21.0808 17.3258 22.0577 14.9144 22.0538 12.4052C22.0538 7.07374 17.7354 2.75672 12.4052 2.75672C7.07374 2.75672 2.75672 7.07374 2.75672 12.4052C2.75672 17.7354 7.07374 22.0538 12.4052 22.0538C14.9144 22.0577 17.3258 21.0808 19.1247 19.3315L19.3315 19.1247Z" fill="#683522"/>
@@ -32,9 +34,9 @@ export function SearchResult({searchStatus,searchCovers,setSelectedCover,wrapper
                
                 </div>}  </> 
          
-         
+
                    {/* FETCHING NEW DATA */}
-          {searchFetch && (
+          {searchFetch && JSON.stringify([]) !== JSON.stringify(searchCovers) && (
          <FetchMoreLoader/>
           )}
 </>)}

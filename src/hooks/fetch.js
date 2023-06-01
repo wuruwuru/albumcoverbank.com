@@ -118,20 +118,17 @@ export const useFetchSearch = (offset, searchTerm, selectedOptions) => {
   const genreOption = genre ? genre.replace("&", "%26") : "";
 
   const url = `https://api.airtable.com/v0/${apiBase}/Covers`;
-  // const searchAlbum = `OR(SEARCH("${searchTerm}", {Album}))`;
-  const searchArtist = `OR(SEARCH("${searchTerm}", {Artist}))`;
-  
-  const filterArtist = `OR(SEARCH("${artistOption}", {Artist}))`;
-  const filterDesigner = `OR(SEARCH("${designerOption}", {Designer}))`;
-  const filterGenre = `OR(SEARCH("${genreOption}", {Genre}))`;
-  const filterYear = `OR({Year} = '${year}')`;
+  const searchAlbum = `SEARCH("${searchTerm}", {Album})`;
+const searchArtist = `SEARCH("${searchTerm}", {Artist})`;
 
-  // const filterYear = `OR(SEARCH("${yearOption}", {Year}))`;
-  // const filterYear = `OR(SEARCH(%22${yearOption}%22%2C+%7BYear%7D))`;
+const filterArtist = `SEARCH("${artistOption}", {Artist})`;
+const filterDesigner = `SEARCH("${designerOption}", {Designer})`;
+const filterGenre = `SEARCH("${genreOption}", {Genre})`;
+const filterYear = `{Year} = '${year}'`;
 
-  const query = year
-    ? `?filterByFormula=AND(${searchArtist}, ${filterDesigner}, ${filterArtist}, ${filterGenre}, ${filterYear})`
-    : `?filterByFormula=AND(${searchArtist}, ${filterDesigner}, ${filterArtist}, ${filterGenre})`;
+const query = year
+  ? `?filterByFormula=AND(OR(${searchArtist},${searchAlbum}), ${filterDesigner}, ${filterArtist}, ${filterGenre}, ${filterYear})`
+  : `?filterByFormula=AND(OR(${searchArtist},${searchAlbum}), ${filterDesigner}, ${filterArtist}, ${filterGenre})`;
 
   const link = `${url}${query}`;
 
