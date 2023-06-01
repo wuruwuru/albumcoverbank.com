@@ -89,7 +89,7 @@ export default function CoverBank() {
           <div className={classes.CoverBankHeader}>
             <p>Explore Nigerian Album Covers</p>
             {/* <h2> {searchCovers?.length} Covers</h2> */}
-            <h2> 5248 Covers</h2>
+            {/* <h2> 5248 Covers</h2> */}
           </div>
 
           {/* SEARCH BAR */}

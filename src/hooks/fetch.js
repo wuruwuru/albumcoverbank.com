@@ -120,15 +120,15 @@ export const useFetchSearch = (offset, searchTerm, selectedOptions) => {
   const url = `https://api.airtable.com/v0/${apiBase}/Covers`;
   const searchAlbum = `SEARCH("${searchTerm}", {Album})`;
 const searchArtist = `SEARCH("${searchTerm}", {Artist})`;
-
+const searchDesigner = `SEARCH("${searchTerm}", {Designer})`;
 const filterArtist = `SEARCH("${artistOption}", {Artist})`;
 const filterDesigner = `SEARCH("${designerOption}", {Designer})`;
 const filterGenre = `SEARCH("${genreOption}", {Genre})`;
 const filterYear = `{Year} = '${year}'`;
 
 const query = year
-  ? `?filterByFormula=AND(OR(${searchArtist},${searchAlbum}), ${filterDesigner}, ${filterArtist}, ${filterGenre}, ${filterYear})`
-  : `?filterByFormula=AND(OR(${searchArtist},${searchAlbum}), ${filterDesigner}, ${filterArtist}, ${filterGenre})`;
+  ? `?filterByFormula=AND(OR(${searchArtist},${searchAlbum},${searchDesigner}), ${filterDesigner}, ${filterArtist}, ${filterGenre}, ${filterYear})`
+  : `?filterByFormula=AND(OR(${searchArtist},${searchAlbum},${searchDesigner}), ${filterDesigner}, ${filterArtist}, ${filterGenre})`;
 
   const link = `${url}${query}`;
 
