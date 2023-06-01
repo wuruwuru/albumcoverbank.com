@@ -27,7 +27,7 @@ export default function SearchBar({ setSearchTerm, setSelectedOptions }) {
           type="text"
           name="search"
           autoComplete="off"
-          placeholder="Search Albums,Artists & Designers"
+          placeholder="Search Albums, Artists & Designers"
           onChange={(e) => setSearchTerm(capitalizeWord(e.target.value))}
         />
         <img src={FilterIcon} alt="filter" onClick={() => setIsShowing(true)} />
