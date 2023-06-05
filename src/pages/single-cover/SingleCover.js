@@ -9,7 +9,9 @@ export default function SingleCover({ cover, setOpenModal }) {
   // const { id } = useParams();
 
   return (
-    <div className={classes.singleCover}>
+    <div className={classes.singleCover}   onClick={() => {
+      setOpenModal(false);
+    }}>
       <div className={classes.coverWrapper}>
         <img
           className={classes.close}

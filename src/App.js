@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
-
+import { Helmet } from 'react-helmet';
 // STYLES
 import "../src/styles/App.scss";
 
@@ -16,6 +16,9 @@ function App() {
   return (
     <div className="App">
       <Router>
+      <Helmet>
+        <script defer data-domain="albumcoverbank.com" src="https://plausible.io/js/script.js" />
+      </Helmet>
         <Navbar />
         <div className="App-container">
           <Routes>
