@@ -23,6 +23,7 @@
     color: $brown-color;
     letter-spacing: -0.07em;
     margin-bottom: 4rem;
+    padding:0 60px;
 
     @include media("<=phone") {
       font-size: 2.8rem;
