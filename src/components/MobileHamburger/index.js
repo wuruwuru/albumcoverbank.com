@@ -14,9 +14,17 @@ export default function MobileHamburger({ setIsShowing }) {
         {/* HEADER */}
         <div className={classes.FormHeader}>
           <h2>Menu</h2>
-          <h4>Covers</h4>
-          <h4>About</h4>
-          <h4>Submit</h4>
+          <a href="/">
+            <h4>Covers</h4>
+          </a>
+          <a href="/about">
+            {" "}
+            <h4>About</h4>
+          </a>
+          <a href="https://forms.gle/Tz1SMwkBRbKvd62JA" target="_blank">
+            {" "}
+            <h4>Submit</h4>
+          </a>
           <img
             src={Close}
             alt="close"
