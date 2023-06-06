@@ -6,14 +6,14 @@
     width: 24px;
     height: 18px;
     cursor: pointer;
-    border-radius: 20px;
+   
   }
   
   .line {
     width: 100%;
     height: 2px;
     background-color: #000;
-    margin-bottom: 4px;
+    margin-bottom: 4px; border-radius: 20px;
     transition: transform 0.3s ease;
   }
   
