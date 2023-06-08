@@ -33,7 +33,11 @@ export default function Navbar() {
         </div>
 
         <ul>
-          <li>
+     
+
+          {!mobile ? (
+            <>
+                 <li>
             <NavLink
               className={({ isActive }) =>
                 isActive ? `${classes.active}` : `${classes.inactive}`
@@ -43,9 +47,6 @@ export default function Navbar() {
               Covers
             </NavLink>
           </li>
-
-          {!mobile ? (
-            <>
               <li>
                 <NavLink
                   className={({ isActive }) =>
