@@ -21,8 +21,8 @@ export default function SingleCover({ cover, setOpenModal }) {
             setOpenModal(false);
           }}
         />
-       <a href="https://forms.gle/azBvWgHKpkTuqWWn6" target="_blank"> <p className={classes.reportLink}>Report</p></a>
-        <figure className={classes.imgContainer}>
+  <div className={classes.coverFirstWrapper}>
+<figure className={classes.imgContainer}>
           <img
             src={cover?.fields?.Cover[0]?.thumbnails?.full?.url}
             alt="album cover"
@@ -58,6 +58,11 @@ export default function SingleCover({ cover, setOpenModal }) {
              <a href={cover?.fields?.Source} target="_blank"><h3 className={classes.truncate}>{cover?.fields?.Source}</h3></a> 
             </li>
           </ul>
+        </div>
+  </div>
+        
+        <div className={classes.reportWrapper}>
+        <a href="https://forms.gle/azBvWgHKpkTuqWWn6" target="_blank"> <p className={classes.reportLink}>Report</p></a>
         </div>
       </div>
 
