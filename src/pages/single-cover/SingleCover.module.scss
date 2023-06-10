@@ -32,9 +32,32 @@
     }
   }
 }
-
+.reportLink{
+  font-size:16px;
+  cursor:pointer;
+  // text-decoration:underline;
+  color: #464646;
+}
+.reportWrapper{
+  display: flex;
+  align-items: center;
+  justify-content: right;
+}
+.truncate{
+  color: #464646;
+  font-size: 1.6rem;
+  font-weight: 400;
+  cursor:pointer;
+  font-style: italic;
+  text-decoration:underline;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width:187px;
+}
 .coverWrapper {
   display: flex;
+  flex-direction: column;
   position: relative;
   background: #fcf3ed;
   box-shadow: 1px 32px 21px 9px rgba(70, 70, 70, 0.2);
@@ -46,13 +69,31 @@
 
   @include media("<=phone") {
     width: 90%;
-    max-height: 100%;
+    max-height: 96%;
+    overflow-y: scroll;
     // height: fit-content;
     flex-direction: column;
     gap: 1.4rem;
-    padding: 6.2rem 1.5rem;
+    padding: 6.2rem 1.5rem 1.2rem 1.5rem;
   }
 
+ 
+
+
+}
+
+
+.coverFirstWrapper {
+  display: flex;
+
+  gap: 5rem;
+
+  @include media("<=phone") {
+
+    flex-direction: column;
+    gap: 1.4rem;
+  
+  }
   figure {
     width: 32rem;
     height: 32rem;
@@ -150,4 +191,6 @@
       }
     }
   }
+
+
 }

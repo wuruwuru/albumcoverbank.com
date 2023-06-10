@@ -1,7 +1,7 @@
-import React from "react";
-import classes from "./About.module.scss";
+import React from "react"
+import classes from "./About.module.scss"
 
-import { contributors } from "../../data/Contributors";
+import { contributors } from "../../data/Contributors"
 
 export default function about() {
   return (
@@ -43,5 +43,5 @@ export default function about() {
         ))}
       </aside>
     </div>
-  );
+  )
 }

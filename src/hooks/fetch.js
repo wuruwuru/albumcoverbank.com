@@ -1,4 +1,4 @@
-import { useQuery } from "react-query";
+import { useQuery,QueryCache } from "react-query";
 import axios from "axios";
 // import { useState, useEffect } from "react";
 
@@ -8,7 +8,7 @@ const apiBase = process.env.REACT_APP_API_BASE;
 const config = {
   headers: { Authorization: `Bearer ${apiKey}` },
 };
-
+const queryCache = new QueryCache()
 // FETCH ALL COVERS
 export const useFetchAllCovers = (offset, pageSize, searchTerm) => {
   const fetchAllCover = async () => {
@@ -30,6 +30,9 @@ export const useFetchAllCovers = (offset, pageSize, searchTerm) => {
       refetchOnWindowFocus: true,
       refetchOnMount: true,
       keepPreviousData: true,
+      refetchInterval:1000,
+      cache: queryCache,
+      staleTime: 1 * 60 * 1000, cacheTime: 5 * 60 * 1000
     }
   );
   return { status, data, isFetching, refetch };
@@ -115,18 +118,17 @@ export const useFetchSearch = (offset, searchTerm, selectedOptions) => {
   const genreOption = genre ? genre.replace("&", "%26") : "";
 
   const url = `https://api.airtable.com/v0/${apiBase}/Covers`;
-  const search = `OR(SEARCH("${searchTerm}", {Album}))`;
-  const filterArtist = `OR(SEARCH("${artistOption}", {Artist}))`;
-  const filterDesigner = `OR(SEARCH("${designerOption}", {Designer}))`;
-  const filterGenre = `OR(SEARCH("${genreOption}", {Genre}))`;
-  const filterYear = `OR({Year} = '${year}')`;
+  const searchAlbum = `SEARCH("${searchTerm}", {Album})`;
+const searchArtist = `SEARCH("${searchTerm}", {Artist})`;
+const searchDesigner = `SEARCH("${searchTerm}", {Designer})`;
+const filterArtist = `SEARCH("${artistOption}", {Artist})`;
+const filterDesigner = `SEARCH("${designerOption}", {Designer})`;
+const filterGenre = `SEARCH("${genreOption}", {Genre})`;
+const filterYear = `{Year} = '${year}'`;
 
-  // const filterYear = `OR(SEARCH("${yearOption}", {Year}))`;
-  // const filterYear = `OR(SEARCH(%22${yearOption}%22%2C+%7BYear%7D))`;
-
-  const query = year
-    ? `?filterByFormula=AND(${search}, ${filterDesigner}, ${filterArtist}, ${filterGenre}, ${filterYear})`
-    : `?filterByFormula=AND(${search}, ${filterDesigner}, ${filterArtist}, ${filterGenre})`;
+const query = year
+  ? `?filterByFormula=AND(OR(${searchArtist},${searchAlbum},${searchDesigner}), ${filterDesigner}, ${filterArtist}, ${filterGenre}, ${filterYear})`
+  : `?filterByFormula=AND(OR(${searchArtist},${searchAlbum},${searchDesigner}), ${filterDesigner}, ${filterArtist}, ${filterGenre})`;
 
   const link = `${url}${query}`;
 

@@ -1,70 +1,79 @@
-import React, { useEffect, useState, useRef } from "react";
-import { useFetchAllCovers, useFetchSearch } from "../../hooks/fetch";
+import React, { useEffect, useState, useRef } from "react"
+import { useFetchAllCovers, useFetchSearch } from "../../hooks/fetch"
 
 // CSS IMPORT
-import classes from "./CoverBank.module.scss";
+import classes from "./CoverBank.module.scss"
 
 // IMPORT COMPONENTS
-import CoverGrid from "./CoverGrid";
-import SearchBar from "../../components/searchBar/SearchBar";
-import SelectedFilter from "./SelectedFilter";
-import SingleCover from "../single-cover/SingleCover";
+import CoverGrid from "./CoverGrid"
+import SearchBar from "../../components/searchBar/SearchBar"
+
+import SelectedFilter from "./SelectedFilter"
+import SingleCover from "../single-cover/SingleCover"
+// IMAGE IMPORT
+import Logo from "../../assets/logo.svg"
+import { SearchResult } from "../../components/searchResult"
+import { HomeResult } from "../../components/homeResult"
+import { ScrolltoTop } from "../../components/scrollToTop"
 
 export default function CoverBank() {
-  const [covers, setCovers] = useState([]);
-  const [searchCovers, setSearchCovers] = useState([]);
-  const [offset, setOffset] = useState("");
-  const [searchTerm, setSearchTerm] = useState("");
+  const [covers, setCovers] = useState([])
+  const [searchCovers, setSearchCovers] = useState([])
+  const [offset, setOffset] = useState("")
+  const [searchTerm, setSearchTerm] = useState("")
   const [selectedOptions, setSelectedOptions] = useState({
     artist: "",
     designer: "",
     year: "",
     genre: "",
-  });
-  const [selectedCover, setSelectedCover] = useState({});
-  const [openModal, setOpenModal] = useState(false);
-
-  let pageSize = 15;
+  })
+  const [selectedCover, setSelectedCover] = useState({})
+  const [openModal, setOpenModal] = useState(false)
+  let pageSize = 15
 
   // ANIMATION REFS
-  const imgRef = useRef();
-  const wrapperRef = useRef();
+  const imgRef = useRef()
+  const wrapperRef = useRef()
 
   // FETCH FROM ALL COVERS FROM AIRTABLE
-  const { status, data: allCovers } = useFetchAllCovers(offset, pageSize, "");
+  const {
+    status: homeStatus,
+    data: allCovers,
+    isFetching: homeFetch,
+  } = useFetchAllCovers(offset, pageSize, "")
 
   // FETCH SEARCH RESULTS
-  const { data: allSearch } = useFetchSearch(
-    offset,
-    searchTerm,
-    selectedOptions
-  );
+  const {
+    status: searchStatus,
+    data: allSearch,
+    isFetching: searchFetch,
+  } = useFetchSearch(offset, searchTerm, selectedOptions)
 
   useEffect(() => {
     // ADD SCROLL EVENT TO WINDOW AND SET OFFSET
-    if (status === "success" && allCovers?.records.length > 1) {
-      window.addEventListener("scroll", handleScroll);
-      setSearchCovers(allSearch?.records);
+    if (homeStatus === "success" && allCovers?.records.length > 1) {
+      window.addEventListener("scroll", handleScroll)
+      setSearchCovers(allSearch?.records)
       // SET INITIAL COVERS ONCE THE COMPONENT MOUNTS
       if (covers.length === 0) {
-        setCovers(allCovers.records);
-        setOffset(allCovers.offset);
+        setCovers(allCovers.records)
+        setOffset(allCovers.offset)
       }
     }
 
     // CALLBACK FUNCTION
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [status, allCovers, allSearch]);
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [homeStatus, allCovers, allSearch])
 
   // FUNCTION THAT FIRES ONCE THE USER GETS TO THE BOTTOM OF THE SCREEN
   const handleScroll = async () => {
     const isAtBottom =
-      window.innerHeight + window.pageYOffset >= document.body.offsetHeight;
+      window.innerHeight + window.pageYOffset >= document.body.offsetHeight
     if (isAtBottom) {
-      setOffset(allCovers.offset);
-      setCovers([...covers, ...allCovers.records]);
+      setOffset(allCovers.offset)
+      setCovers([...covers, ...allCovers.records])
     }
-  };
+  }
 
   return (
     <>
@@ -78,8 +87,9 @@ export default function CoverBank() {
         <>
           {/* HEADER */}
           <div className={classes.CoverBankHeader}>
-            <p>Explore Nigerian Album Covers</p>
-            <h2>5246 Covers</h2>
+            <h2>Explore Nigerian Album Covers</h2>
+            {/* <h2> {searchCovers?.length} Covers</h2> */}
+            {/* <h2> 5248 Covers</h2> */}
           </div>
 
           {/* SEARCH BAR */}
@@ -100,40 +110,40 @@ export default function CoverBank() {
           {/* )} */}
 
           {/* COVER GRID */}
-          {status === "success" && (
-            <>
-              {!searchTerm &&
-                !selectedOptions.designer &&
-                !selectedOptions.artist &&
-                !selectedOptions.year &&
-                !selectedOptions.genre && (
-                  <CoverGrid
-                    covers={covers}
-                    setSelectedCover={setSelectedCover}
-                    selectedCover={selectedCover}
-                    setOpenModal={setOpenModal}
-                    imgRef={imgRef}
-                    wrapperRef={wrapperRef}
-                  />
-                )}
 
-              {/* FOR SEARCHING */}
-              {(searchTerm ||
-                selectedOptions.designer ||
-                selectedOptions.artist ||
-                selectedOptions.year ||
-                selectedOptions.genre) && (
-                <CoverGrid
-                  covers={searchCovers}
-                  setSelectedCover={setSelectedCover}
-                  setOpenModal={setOpenModal}
-                  imgRef={imgRef}
-                  wrapperRef={wrapperRef}
-                />
-              )}
-            </>
-          )}
+          <>
+            {!searchTerm &&
+            !selectedOptions.designer &&
+            !selectedOptions.artist &&
+            !selectedOptions.year &&
+            !selectedOptions.genre ? (
+              <HomeResult
+                homeStatus={homeStatus}
+                covers={covers}
+                searchCovers={searchCovers}
+                selectedOptions={selectedOptions}
+                setSelectedCover={setSelectedCover}
+                wrapperRef={wrapperRef}
+                setOpenModal={setOpenModal}
+                imgRef={imgRef}
+                homeFetch={homeFetch}
+              />
+            ) : (
+              <SearchResult
+                searchStatus={searchStatus}
+                searchTerm={searchTerm}
+                searchCovers={searchCovers}
+                selectedOptions={selectedOptions}
+                setSelectedCover={setSelectedCover}
+                wrapperRef={wrapperRef}
+                setOpenModal={setOpenModal}
+                imgRef={imgRef}
+                searchFetch={searchFetch}
+              />
+            )}
+          </>
         </>
+        <ScrolltoTop />
       </div>
 
       {/* SELECTED COVER */}
@@ -141,5 +151,5 @@ export default function CoverBank() {
         <SingleCover cover={selectedCover} setOpenModal={setOpenModal} />
       )}
     </>
-  );
+  )
 }

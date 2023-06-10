@@ -46,6 +46,12 @@
   box-shadow: -4px 6px 12px rgba(0, 0, 0, 0.2);
   border-radius: 1.2rem;
   height: 30.9rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  padding-top: 11rem;
 
   @include media("<=phone") {
     height: 100%;
@@ -59,6 +65,10 @@
 .FormHeader {
   display: flex;
   padding-bottom: 3.1rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap:33px;
 
   img {
     width: 1.8rem;
@@ -72,12 +82,19 @@
       right: 1.5rem;
     }
   }
-
+h2{
+    
+  font-weight: 600;
+  font-size: 1.9rem;
+  color: #171717;
+  cursor: pointer;
+}
   h4 {
-    margin-right: auto;
-    font-weight: 600;
-    font-size: 1.6rem;
+    
+    font-weight: 400;
+    font-size: 2.9rem;
     color: #171717;
+    cursor: pointer;
   }
 }
 

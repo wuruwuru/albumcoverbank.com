@@ -1,8 +1,8 @@
-import React from "react";
-import classes from "./SelectedFilter.module.scss";
+import React, { useEffect } from "react"
+import classes from "./SelectedFilter.module.scss"
 
 // IMAGE IMPORT
-import Close from "../../assets/closeIcon.webp";
+import Close from "../../assets/closeIcon.webp"
 
 export default function SelectedFilter({
   selectedOptions,
@@ -25,30 +25,30 @@ export default function SelectedFilter({
       title: "Designer",
       value: selectedOptions.designer,
     },
-  ];
+  ]
 
   const removeSpecificFilters = (title) => {
     switch (title) {
       case "Year":
-        setSelectedOptions({ ...selectedOptions, year: "" });
-        break;
+        setSelectedOptions({ ...selectedOptions, year: "" })
+        break
 
       case "Genre":
-        setSelectedOptions({ ...selectedOptions, genre: "" });
-        break;
+        setSelectedOptions({ ...selectedOptions, genre: "" })
+        break
 
       case "Artist":
-        setSelectedOptions({ ...selectedOptions, artist: "" });
-        break;
+        setSelectedOptions({ ...selectedOptions, artist: "" })
+        break
 
       case "Designer":
-        setSelectedOptions({ ...selectedOptions, designer: "" });
-        break;
+        setSelectedOptions({ ...selectedOptions, designer: "" })
+        break
 
       default:
-        break;
+        break
     }
-  };
+  }
 
   return (
     <div className={classes.selectedFilter}>
@@ -63,11 +63,13 @@ export default function SelectedFilter({
               <img
                 src={Close}
                 alt="clear filter option"
+                width="235"
+                height="235"
                 onClick={() => removeSpecificFilters(filter.title)}
               />
             </div>
           )
       )}
     </div>
-  );
+  )
 }

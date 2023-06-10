@@ -1,9 +1,12 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import { App } from "../../animations/Canvas/index";
+import React from "react"
+import { useNavigate } from "react-router-dom"
+import { App } from "../../animations/Canvas/index"
 
 // CSS IMPORT
-import classes from "./CoverBank.module.scss";
+import classes from "./CoverBank.module.scss"
+
+//COMPONENTS
+import ProgressiveImg from "../../components/progressiveImg"
 
 export default function CoverGrid({
   covers,
@@ -12,7 +15,7 @@ export default function CoverGrid({
   setSelectedCover,
   setOpenModal,
 }) {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   return (
     <>
@@ -21,21 +24,27 @@ export default function CoverGrid({
           covers.map((cover) => (
             <div key={cover.id}>
               <figure ref={imgRef}>
-                <img
+                <ProgressiveImg
                   src={cover?.fields?.Cover[0]?.thumbnails?.full?.url}
+                  wrapperRef={wrapperRef}
+                  cover={cover}
+                  imgRef={imgRef}
+                  App={App}
                   alt="album cover"
-                  onClick={() => {
-                    setSelectedCover(cover);
-                    setOpenModal(true);
-                    new App({ figure: imgRef, wrapper: wrapperRef });
-                  }}
+                  width="240"
+                  height="211"
+                  setOpenModal={setOpenModal}
+                  setSelectedCover={setSelectedCover}
+                  placeholderSrc="data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
                 />
               </figure>
               <p> {cover?.fields?.Album} </p>
-              <span>{cover.fields["Designers copy"]}</span>
+              <h4>
+                {cover.fields?.ArtistWebsite}
+              </h4>
             </div>
           ))}
       </div>
     </>
-  );
+  )
 }
