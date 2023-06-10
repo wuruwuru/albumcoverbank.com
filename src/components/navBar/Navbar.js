@@ -33,20 +33,18 @@ export default function Navbar() {
         </div>
 
         <ul>
-     
-
           {!mobile ? (
             <>
-                 <li>
-            <NavLink
-              className={({ isActive }) =>
-                isActive ? `${classes.active}` : `${classes.inactive}`
-              }
-              to="/"
-            >
-              Covers
-            </NavLink>
-          </li>
+              <li>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? `${classes.active}` : `${classes.inactive}`
+                  }
+                  to="/"
+                >
+                  Covers
+                </NavLink>
+              </li>
               <li>
                 <NavLink
                   className={({ isActive }) =>

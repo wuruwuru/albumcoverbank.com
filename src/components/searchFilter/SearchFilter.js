@@ -1,50 +1,50 @@
-import React, { useState, useEffect } from "react";
-import Select from "react-select";
-import { useFetchArtists } from "../../hooks/fetch";
-import { Genre } from "../../data/Genre";
+import React, { useState, useEffect } from "react"
+import Select from "react-select"
+import { useFetchArtists } from "../../hooks/fetch"
+import { Genre } from "../../data/Genre"
 
 // STYLE IMPORT
-import classes from "./SearchFilter.module.scss";
-import { colourStyles } from "./SelectDropdownStyles";
+import classes from "./SearchFilter.module.scss"
+import { colourStyles } from "./SelectDropdownStyles"
 
 // IMAGE IMPORT
-import Close from "../../assets/closeIcon.webp";
-import Logo from "../../assets/logo.svg";
+import Close from "../../assets/closeIcon.webp"
+import Logo from "../../assets/logo.svg"
 
 export default function SearchFilter({
   setIsShowing,
   setSelectedOptions,
   capitalizeWord,
 }) {
-  const [artistFilter, setArtistFilter] = useState("");
-  const [designerFilter, setDesignerFilter] = useState("");
+  const [artistFilter, setArtistFilter] = useState("")
+  const [designerFilter, setDesignerFilter] = useState("")
   const { status: artistStatus, data: artists } = useFetchArtists(
     "Artists",
     artistFilter
-  );
+  )
   const { status: designerStatus, data: designers } = useFetchArtists(
     "Designers",
     designerFilter
-  );
-  const [genreOptions, setGenreOptions] = useState("");
+  )
+  const [genreOptions, setGenreOptions] = useState("")
   const [selectedFilter, setSelectedFilter] = useState({
     artist: "",
     designer: "",
     year: "",
     genre: "",
-  });
+  })
 
   // GENRE FILTER FUNCTIONALITY
   useEffect(() => {
-    const arr = [];
+    const arr = []
     Genre.map((artist) => {
       return arr.push({
         value: artist,
         label: artist,
-      });
-    });
-    setGenreOptions(arr);
-  }, []);
+      })
+    })
+    setGenreOptions(arr)
+  }, [])
 
   // RESET FUNCTIONALITY
   const handleReset = () => {
@@ -53,20 +53,20 @@ export default function SearchFilter({
       designer: "",
       year: "",
       genre: "",
-    });
-  };
+    })
+  }
 
   // SUBMIT FUNCTIONALITY
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     setSelectedOptions({
       artist: selectedFilter.artist,
       designer: selectedFilter.designer,
       year: selectedFilter.year,
       genre: selectedFilter.genre,
-    });
-    setIsShowing(false);
-  };
+    })
+    setIsShowing(false)
+  }
 
   return (
     <div className={classes.FilterContainer}>
@@ -78,7 +78,7 @@ export default function SearchFilter({
             src={Close}
             alt="close"
             onClick={() => {
-              setIsShowing(false);
+              setIsShowing(false)
             }}
           />
         </div>
@@ -177,7 +177,7 @@ export default function SearchFilter({
         </div>
       </form>
     </div>
-  );
+  )
 }
 
 // useEffect(() => {

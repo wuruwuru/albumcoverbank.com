@@ -1,22 +1,30 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from "react"
 
-const ProgressiveImg = ({ placeholderSrc, src,imgRef, App, width,height, 
-cover,
-    wrapperRef,
-    setSelectedCover,
-    setOpenModal, ...props }) => {
-    //    update the src of the img and render the actual image
-  const [imgSrc, setImgSrc] = useState(placeholderSrc || src);
+const ProgressiveImg = ({
+  placeholderSrc,
+  src,
+  imgRef,
+  App,
+  width,
+  height,
+  cover,
+  wrapperRef,
+  setSelectedCover,
+  setOpenModal,
+  ...props
+}) => {
+  //    update the src of the img and render the actual image
+  const [imgSrc, setImgSrc] = useState(placeholderSrc || src)
 
   useEffect(() => {
     // creating an img element by instantiating an Image() object
-    const img = new Image();
+    const img = new Image()
     // setting the src attribute to the actual image source
-    img.src = src;
-    // detect when the actual image has completely loaded 
+    img.src = src
+    // detect when the actual image has completely loaded
     img.onload = () => {
-      setImgSrc(src);
-    };
+      setImgSrc(src)
+    }
   }, [src])
 
   return (
@@ -26,14 +34,12 @@ cover,
       width={width}
       height={height}
       className="image"
-         
       onClick={() => {
-        setSelectedCover(cover);
-        setOpenModal(true);
-        new App({ figure: {imgRef}, wrapper: {wrapperRef} });
+        setSelectedCover(cover)
+        setOpenModal(true)
+        new App({ figure: { imgRef }, wrapper: { wrapperRef } })
       }}
-
     />
-  );
-};
-export default ProgressiveImg;
+  )
+}
+export default ProgressiveImg
