@@ -3,7 +3,9 @@ import classes from "./About.module.scss"
 
 import { contributors } from "../../data/Contributors"
 
-export default function about() {
+
+export default function About() {
+
   return (
     <div className={classes.about}>
       <div className={classes.aboutWrapper}>
