@@ -14,12 +14,31 @@ import Jessica from "../assets/contributors/jessica.svg";
 import Goodluck from "../assets/contributors/goodluck.svg";
 
 export const contributors = [
- 
+  {
+    name: "Dike Goodluck",
+    role: "Engineer",
+    image: Goodluck,
+  },
+  {
+    name: "Eseosa Belo-Osagie",
+    role: "Writer",
+    image: Eseosa,
+  },
+   {
+    name: "Emmanuel Aminu",
+    role: "Data Analyst",
+    image: Emmanuel,
+  },
   {
     name: "Idris Ayinde",
     role: "Designer",
     image: Idris,
+  },{
+    name: "Jessica Loius",
+    role: "Artist",
+    image: Jessica,
   },
+  
  
   {
     name: "Lina Adamson",
@@ -33,29 +52,11 @@ export const contributors = [
     image: Tomiwa,
   },
 
-   {
-    name: "Emmanuel Aminu",
-    role: "Data Analyst",
-    image: Emmanuel,
-  },
-   {
-    name: "Eseosa Belo-Osagie",
-    role: "Writer",
-    image: Eseosa,
-  },
+ 
    {
     name: "Toyosi Odukale",
     role: "Engineer",
     image: Toyosi,
   },
-   {
-    name: "Jessica Loius",
-    role: "Artist",
-    image: Jessica,
-  },
-   {
-    name: "Dike Goodluck",
-    role: "Engineer",
-    image: Goodluck,
-  },
+   
 ];
