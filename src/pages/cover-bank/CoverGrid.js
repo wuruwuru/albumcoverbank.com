@@ -19,32 +19,34 @@ export default function CoverGrid({
 
   return (
     <>
+     <>
       <div className={classes.coverGrid}>
         {covers &&
           covers.map((cover) => (
-            <div key={cover.id}>
+            <div key={cover?.id}>
               <figure ref={imgRef}>
-                <ProgressiveImg
-                  src={cover?.fields?.Cover[0]?.thumbnails?.full?.url}
-                  wrapperRef={wrapperRef}
-                  cover={cover}
-                  imgRef={imgRef}
-                  App={App}
-                  alt="album cover"
-                  width="240"
-                  height="211"
-                  setOpenModal={setOpenModal}
-                  setSelectedCover={setSelectedCover}
-                  placeholderSrc="data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
-                />
+                {cover?.fields?.Cover?.[0]?.thumbnails?.full?.url ? (
+                  <ProgressiveImg
+                    src={cover?.fields?.Cover[0]?.thumbnails.full.url}
+                    wrapperRef={wrapperRef}
+                    cover={cover}
+                    imgRef={imgRef}
+                    App={App}
+                    alt="album cover"
+                    width="240"
+                    height="211"
+                    setOpenModal={setOpenModal}
+                    setSelectedCover={setSelectedCover}
+                    placeholderSrc="data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
+                  />
+                ) : null}
               </figure>
-              <p> {cover?.fields?.Album} </p>
-              <h4>
-                {cover.fields?.ArtistWebsite}
-              </h4>
+              <p>{cover?.fields?.Album}</p>
+              <h4>{cover?.fields?.ArtistWebsite}</h4>
             </div>
           ))}
       </div>
+    </>
     </>
   )
 }
