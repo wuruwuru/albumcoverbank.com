@@ -24,7 +24,7 @@
     }
   }
   .aboutWrapper {
-    max-width: 54.1rem;
+    max-width: 57.1rem;
 
     @include media("<=phone") {
       margin-bottom: 4.8rem;
@@ -32,9 +32,10 @@
 
     p {
       font-size: 1.6rem;
-      font-weight: 500;
+      font-weight: 400;
       margin: 2rem 0;
       line-height: 2.4rem;
+      color: #000000;
 
       @include media("<=phone") {
         font-weight: 400;

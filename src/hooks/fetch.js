@@ -14,7 +14,8 @@ export const useFetchAllCovers = (offset, pageSize, searchTerm) => {
   const fetchAllCover = async () => {
     try {
       const { data } = await axios.get(
-        `https://api.airtable.com/v0/${apiBase}/Covers?pageSize=${pageSize}&view=All%20Covers&filterByFormula=SEARCH(%22${searchTerm}%22%2C%7BAlbum%7D)&offset=${offset}`,
+        `https://api.airtable.com/v0/${apiBase}/Covers?pageSize=${pageSize}&view=All%20Covers&filterByFormula=SEARCH(%22${searchTerm}%22%2C%7BAlbum%7D)&sort%5B0%5D%5Bfield%5D=Last%20Modified&sort%5B0%5D%5Bdirection%5D=desc&offset=${offset}
+        `,
         config
       );
       return data;

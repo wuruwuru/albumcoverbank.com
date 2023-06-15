@@ -15,68 +15,48 @@ import Goodluck from "../assets/contributors/goodluck.svg";
 
 export const contributors = [
   {
-    name: "Chukwudi Ukonne B.",
-    role: "Writer",
-    image: Chukwudi,
-  },
-  {
-    name: "Idris Ayinde",
-    role: "Designer",
-    image: Idris,
-  },
-  {
-    name: "Immaculata Abba",
-    role: "Writer",
-    image: Abba,
-  },
-  {
-    name: "Kemi Falodun",
-    role: "Writer",
-    image: Kemi,
-  },
-  {
-    name: "Lina Adamson",
+    name: "Dike Goodluck",
     role: "Engineer",
-    image: Lina,
+    image: Goodluck,
   },
   {
-    name: "Ope Aikomo",
+    name: "Eseosa Belo-Osagie",
     role: "Writer",
-    image: Ope,
-  },
-  {
-    name: "Tomiwa Ajiboye",
-    role: "Designer",
-    image: Tomiwa,
-  },
-  {
-    name: "Wale Olowokerende",
-    role: "Writer",
-    image: Wale,
+    image: Eseosa,
   },
    {
     name: "Emmanuel Aminu",
     role: "Data Analyst",
     image: Emmanuel,
   },
-   {
-    name: "Wale Olowokerende",
-    role: "Writer",
-    image: Eseosa,
+  {
+    name: "Idris Ayinde",
+    role: "Designer",
+    image: Idris,
+  },{
+    name: "Jessica Loius",
+    role: "Artist",
+    image: Jessica,
   },
+  
+ 
+  {
+    name: "Lina Adamson",
+    role: "Engineer",
+    image: Lina,
+  },
+ 
+  {
+    name: "Tomiwa Ajiboye",
+    role: "Designer",
+    image: Tomiwa,
+  },
+
+ 
    {
     name: "Toyosi Odukale",
     role: "Engineer",
     image: Toyosi,
   },
-   {
-    name: "Jessica Loius",
-    role: "Artist",
-    image: Jessica,
-  },
-   {
-    name: "Dike Goodluck",
-    role: "Engineer",
-    image: Goodluck,
-  },
+   
 ];
