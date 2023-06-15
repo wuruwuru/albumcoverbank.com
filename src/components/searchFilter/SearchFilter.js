@@ -33,6 +33,7 @@ export default function SearchFilter({
     year: "",
     genre: "",
   })
+  const [yearfilter, setYearFilter] = useState([])
 
   // GENRE FILTER FUNCTIONALITY
   useEffect(() => {
@@ -68,6 +69,17 @@ export default function SearchFilter({
     setIsShowing(false)
   }
 
+  // YEARS FILTER FUNCTIONALITY
+  useEffect(() => {
+    const d = new Date()
+    const years = []
+
+    for (let i = 1959; i <= d.getFullYear(); i++) {
+      years.push(i)
+    }
+    setYearFilter(years)
+  }, [])
+
   return (
     <div className={classes.FilterContainer}>
       <form className={classes.FilterForm} onSubmit={(e) => handleSubmit(e)}>
@@ -91,15 +103,28 @@ export default function SearchFilter({
           {/* YEAR FILTER */}
           <label>
             <span>Year </span>
-            <input
-              className={classes.inputContainer}
-              placeholder="Enter Value"
-              type="number"
-              value={selectedFilter.year || ""}
-              onChange={(e) =>
-                setSelectedFilter({ ...selectedFilter, year: e.target.value })
-              }
-            />
+            <div className={classes.selectContainer}>
+              <Select
+                onChange={(selectedOption) =>
+                  setSelectedFilter({
+                    ...selectedFilter,
+                    year: selectedOption.value,
+                  })
+                }
+                value={
+                  selectedFilter.year
+                    ? { label: selectedFilter.year, value: selectedFilter.year }
+                    : null
+                }
+                options={yearfilter.map((year) => ({
+                  label: year,
+                  value: year,
+                }))}
+                isSearchable={true}
+                placeholder="Enter Value"
+                styles={colourStyles}
+              />
+            </div>
           </label>
 
           {/* GENRE FILTER */}
