@@ -45,7 +45,7 @@ export const useFetchArtists = (title, searchTerm) => {
   const fetchArtists = async () => {
     try {
       const { data } = await axios.get(
-        `https://api.airtable.com/v0/${apiBase}/${title}?view=All%20${title}&filterByFormula=SEARCH(%22${searchTerm}%22%2C%7BName%7D)`,
+        `https://api.airtable.com/v0/${apiBase}/${title}?view=All%20${title}&filterByFormula=SEARCH(%22${searchTerm}%22%2C%7BName%7D)&sort%5B0%5D%5Bfield%5D=Name&sort%5B0%5D%5Bdirection%5D=asc`,
         config
       );
 
