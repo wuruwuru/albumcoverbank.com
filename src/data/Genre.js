@@ -59,8 +59,8 @@ export const Genre = [
   "Religious",
   "Afro-Dancehall",
 ].sort((a,b)=>{
-	let fa = a.component.toLowerCase(),
-		fb = b.component.toLowerCase();
+	let fa = a.toLowerCase(),
+		fb = b.toLowerCase();
 
 	if (fa < fb) {
 		return -1;
