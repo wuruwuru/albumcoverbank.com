@@ -31,6 +31,7 @@ We created the archive to establish the history of digital art production in Nig
 By bringing the past into the present, Cover Bank is also a useful resource for musicians and album designers. The archive serves as a creative space to inspire cover design and visual storytelling and informs artists on how to reflect their style and message through visuals.
         </p>
 
+        <h4>Colophon</h4>
         <p>
           
 The project is built and maintained by a team of contributors. Most of the images are scrapped from various sources on the internet, and a few were sent in by the artists. All images are referenced and we’ve also provided a form to report or request them to be taken down.
