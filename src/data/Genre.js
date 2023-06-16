@@ -58,15 +58,15 @@ export const Genre = [
   "Rumba",
   "Religious",
   "Afro-Dancehall",
-].sort((a,b)=>{
-	let fa = a.toLowerCase(),
-		fb = b.toLowerCase();
+].sort((a, b) => {
+  let fa = a.toLowerCase(),
+    fb = b.toLowerCase()
 
-	if (fa < fb) {
-		return -1;
-	}
-	if (fa > fb) {
-		return 1;
-	}
-	return 0;
-});
+  if (fa < fb) {
+    return -1
+  }
+  if (fa > fb) {
+    return 1
+  }
+  return 0
+})
