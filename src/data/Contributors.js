@@ -15,48 +15,48 @@ import Goodluck from "../assets/contributors/goodluck.svg";
 
 export const contributors = [
   {
-    name: "Dike Goodluck",
-    role: "Engineer",
-    image: Goodluck,
-  },
-  {
     name: "Eseosa Belo-Osagie",
-    role: "Writer",
+    role: "Researcher",
     image: Eseosa,
   },
-   {
+  {
     name: "Emmanuel Aminu",
-    role: "Data Analyst",
+    role: "Researcher",
     image: Emmanuel,
+  },
+  {
+    name: "Jessica Loius",
+    role: "Researcher",
+    image: Jessica,
   },
   {
     name: "Idris Ayinde",
     role: "Designer",
     image: Idris,
-  },{
-    name: "Jessica Loius",
-    role: "Artist",
-    image: Jessica,
   },
-  
- 
-  {
-    name: "Lina Adamson",
-    role: "Engineer",
-    image: Lina,
-  },
- 
   {
     name: "Tomiwa Ajiboye",
     role: "Designer",
     image: Tomiwa,
   },
-
- 
+  {
+    name: "Dike Goodluck",
+    role: "Engineer",
+    image: Goodluck,
+  },
+  {
+    name: "Lina Adamson",
+    role: "Engineer",
+    image: Lina,
+  },
    {
     name: "Toyosi Odukale",
     role: "Engineer",
     image: Toyosi,
   },
-   
+  {
+    name: "Opemipo Aikomo",
+    role: "Producer",
+    image: Ope,
+  }
 ];
