@@ -54,6 +54,7 @@ export const useFetchArtists = (title, searchTerm) => {
         return arr.push({
           value: artist.fields.Name.toLowerCase(),
           label: artist.fields.Name,
+          
         })
       })
 
