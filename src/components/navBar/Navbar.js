@@ -60,7 +60,7 @@ export default function Navbar() {
                   className={({ isActive }) =>
                     isActive ? `${classes.active}` : `${classes.inactive}`
                   }
-                  href="https://forms.gle/Tz1SMwkBRbKvd62JA"
+                  href="https://airtable.com/appHk58J4aUulwANn/shrZfNfuUyNeGaepQ"
                   target="_blank"
                 >
                   Submit

@@ -67,7 +67,7 @@ export default function SingleCover({ cover, setOpenModal }) {
         </div>
 
         <div className={classes.reportWrapper}>
-          <a href="https://forms.gle/azBvWgHKpkTuqWWn6" target="_blank">
+          <a href="mailto:samson@wuruwuru.com&title=Report Album Cover" target="_blank">
             {" "}
             <p className={classes.reportLink}>Report</p>
           </a>
