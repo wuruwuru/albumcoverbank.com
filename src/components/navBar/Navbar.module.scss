@@ -17,10 +17,6 @@
     display: flex;
     gap: 3.3rem;
 
-    @include media("<=phone") {
-      gap: 0;
-    }
-
     a {
       @extend %link--hidden;
 
