@@ -67,7 +67,7 @@ export default function SingleCover({ cover, setOpenModal }) {
         </div>
 
         <div className={classes.reportWrapper}>
-          <a href="mailto:samson@wuruwuru.com&title=Report Album Cover" target="_blank">
+          <a href={"mailto:samson@wuruwuru.com?subject=Report%20Album%20Cover%3A" + cover?.fields?.Album} target="_blank">
             {" "}
             <p className={classes.reportLink}>Report</p>
           </a>
