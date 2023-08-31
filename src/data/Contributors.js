@@ -12,6 +12,7 @@ import Eseosa from "../assets/contributors/eseosa.svg";
 import Toyosi from "../assets/contributors/toyosi.svg";
 import Jessica from "../assets/contributors/jessica.svg";
 import Goodluck from "../assets/contributors/goodluck.svg";
+import Samson from "../assets/contributors/samson.webp";
 
 export const contributors = [
   {
@@ -28,6 +29,11 @@ export const contributors = [
     name: "Jessica Loius",
     role: "Researcher",
     image: Jessica,
+  },
+  {
+    name: "Samson Oyedija",
+    role: "Researcher",
+    image: Samson,
   },
   {
     name: "Idris Ayinde",
