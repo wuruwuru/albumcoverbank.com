@@ -13,7 +13,7 @@ export default function About() {
 
         <p>
          
-This website is an online archive of Nigerian album cover art from 1950 to date. It shows a unique and comprehensive view of the evolution of Nigerian album art.
+This website is a digital archive of Nigerian album cover art from 1950 to date. It shows a unique and comprehensive view of the evolution of Nigerian album art.
         </p>
 
         <p>
