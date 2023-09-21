@@ -13,17 +13,17 @@ export default function About() {
 
         <p>
          
-Album Cover Bank is an archive of Nigerian album cover art from 1950 to date. It provides a unique and comprehensive view of the evolution of Nigerian album art.
+This website is an online archive of Nigerian album cover art from 1950 to date. It shows a unique and comprehensive view of the evolution of Nigerian album art.
         </p>
 
         <p>
         
-Album art is often the first interaction people have with commercial music. It reflects an artist's style, message, and creative vision. The archive highlights how album art has changed and evolved alongside the political, economic, and social climate of the music industry and Nigeria at large. It provides insight into the creativity and vision of Nigerian artists throughout the years. 
+Album art is often the first interaction people have with commercial music. It reflects an artist's style, message, and creative vision. The archive highlights how this craft has evolved alongside the political, economic, and social climate of the music industry and Nigeria at large. It provides insight into the creativity and vision of Nigerian artists throughout the years. 
         </p>
 
         <p>
           
-We created the archive to establish the history of digital art production in Nigeria and provide a platform for graphic design inspiration. With 5000+ images, the archive displays the rich history and diversity of Nigerian music, graphic design, photography and illustration. It’s a valuable tool for enthusiasts, researchers and educators.
+We created the archive to establish a history of digital art production in Nigeria and provide a platform for graphic design inspiration. With 5000+ images, the archive shows the rich diversity of Nigerian music, graphic design, photography and illustration. It’s a valuable tool for enthusiasts, researchers and educators.
         </p>
 
         <p>
@@ -32,7 +32,7 @@ By bringing the past into the present, Cover Bank is also a useful resource for 
         </p>
         <p>
           
-The project is built and maintained by a team of contributors. Most of the images are scrapped from various sources on the internet, and a few were sent in by the artists. All images are referenced to the source. We’ve also provided a form to report or request any covers.
+The project is built and maintained by a team of contributors. Most of the images are scrapped from various sources on the internet, and some are sent in by the artists. All images are referenced to the source. We’ve also provided a form to report or request any covers.
         </p>
       </div>
 
