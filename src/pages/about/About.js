@@ -13,26 +13,20 @@ export default function About() {
 
         <p>
          
-This website is a digital archive of Nigerian album cover art from 1950 to date. It shows a unique and comprehensive view of the evolution of Nigerian album art.
+Cover Bank is a digital archive of Nigerian album cover art from 1950 to date. It provides a unique and comprehensive view of the evolution of Nigerian album art.
         </p>
 
         <p>
         
-Album art is often the first interaction people have with commercial music. It reflects an artist's style, message, and creative vision. The archive highlights how this craft has evolved alongside the political, economic, and social climate of the music industry and Nigeria at large. It provides insight into the creativity and vision of Nigerian artists throughout the years. 
-        </p>
+The main goal of the archive is to establish a certain history of Nigerian graphic design. At the core, it’s about cultural identity. The other goal is to provide a platform to celebrate album cover artists. We’ve documented 750 Nigerian album cover designers so far!        </p>
 
         <p>
           
-We created the archive to establish a history of digital art production in Nigeria and provide a platform for graphic design inspiration. With 5000+ images, the archive shows the rich diversity of Nigerian music, graphic design, photography and illustration. It’s a valuable tool for enthusiasts, researchers and educators.
-        </p>
-
-        <p>
-         
-By bringing the past into the present, Cover Bank is also a useful resource for musicians and album designers. The archive serves as a creative space to inspire cover design and visual storytelling and informs artists on how to reflect their style and message through visuals.
+We created the archive to establish a history of digital art production in Nigeria and provide a platform for graphic design inspiration. The archive shows the rich diversity of Nigerian music, graphic design, photography and illustration and is a valuable tool for enthusiasts, researchers and educators.
         </p>
         <p>
           
-The project is built and maintained by a team of contributors. Most of the images are scrapped from various sources on the internet, and some are sent in by the artists. All images are referenced to the source. We’ve also provided a form to report or request any covers.
+The project is built and maintained by a team of contributors. We hope the archive inspires more cultural production.
         </p>
       </div>
 
