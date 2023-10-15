@@ -12,7 +12,7 @@ export default function About() {
         <h2>About</h2>
         <p>Album Cover Bank is a digital archive of Nigerian album covers published from 1950 to date. It provides a unique and comprehensive view into the evolution of Nigeria music and graphic design.</p>
         <p>At its core, the project is about cultural identity. The primary goal of the archive is to further establish the history of Nigerian graphic design. We're also looking to highlight album cover artists as important cultural producers. So far, we’ve documented 750 cover designers! </p>
-        <p>We hope the archive is used a platform for graphic design and storytelling inspiration. Each cover is a window into history and a valuable tool for enthusiasts, researchers, educators and artists of all kind.</p>
+        <p>The archive is a platform for graphic design and storytelling inspiration. Each cover is a unique window into history, which makes the collection a valuable tool for enthusiasts, researchers, educators and artists of all kind.</p>
         <p>The project is built and maintained by a team of contributors.</p>
         <h4>Contributions</h4>
         <p><a href="https://www.waxpoetics.com/article/nigerian-1970s-album-covers-wuruwuru-archives/" target="_blank">Face the Music</a> is the first essay published from the album cover archive. It's written by multidisciplinary artist <a href="https://immaculataabba.com/" target="_blank">Immaculata Abba</a> and discusses how the covers from 1970 (post-independence) reflected national identities.</p>
