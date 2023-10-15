@@ -11,7 +11,7 @@ export default function About() {
       <div className={classes.aboutWrapper}>
         <h2>About</h2>
         <p>Album Cover Bank is a digital archive of Nigerian album covers published from 1950 to date. It provides a comprehensive view into the evolution of Nigerian music and graphic design.</p>
-        <p>At its core, the project is about cultural identity. The primary goal of the archive is to further establish the history of Nigerian graphic design. We're also looking to highlight album cover artists as important cultural producers. So far, we’ve documented 750 cover designers! </p>
+        <p>At its core, the project is about cultural identity. The primary goal of the archive is to establish the history of Nigerian graphic design. We're also looking to highlight album cover artists as important cultural producers. So far, we’ve documented 750 designers! </p>
         <p>The archive is a platform for graphic design and storytelling inspiration. Each cover is a unique window into history, which makes the collection a valuable tool for enthusiasts, researchers, educators and artists of all kind.</p>
         <p>The project is built and maintained by a team of contributors.</p>
         <h4>Contributions</h4>
