@@ -10,24 +10,11 @@ export default function About() {
     <div className={classes.about}>
       <div className={classes.aboutWrapper}>
         <h2> About</h2>
-
-        <p>
-         
-Cover Bank is a digital archive of Nigerian album cover art from 1950 to date. It provides a unique and comprehensive view of the evolution of Nigerian album art.
+        <p>Cover Bank is a digital archive of Nigerian album cover art from 1950 to date. It provides a unique and comprehensive view of the evolution of Nigerian album art</p>
+        <p>The main goal of the archive is to further establish the history of Nigerian graphic design. At the core, it’s about cultural identity. The other goal is to provide a platform to celebrate album cover artists. We’ve documented 750 designers so far! </p>
+        <p>We hope the archive is used a platform for graphic design inspiration and storytelling. Each cover represents a place, time and person (or group), a valuable tool for enthusiasts, researchers and educators.
         </p>
-
-        <p>
-        
-The main goal of the archive is to establish a certain history of Nigerian graphic design. At the core, it’s about cultural identity. The other goal is to provide a platform to celebrate album cover artists. We’ve documented 750 Nigerian album cover designers so far!        </p>
-
-        <p>
-          
-We created the archive to establish a history of digital art production in Nigeria and provide a platform for graphic design inspiration. The archive shows the rich diversity of Nigerian music, graphic design, photography and illustration and is a valuable tool for enthusiasts, researchers and educators.
-        </p>
-        <p>
-          
-The project is built and maintained by a team of contributors. We hope the archive inspires more cultural production.
-        </p>
+        <p>The project is built and maintained by a team of contributors.</p>
       </div>
 
       {/* CONTRIBUTORS */}
