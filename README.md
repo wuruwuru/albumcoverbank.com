@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Album Cover Bank
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A public archive for Nigerian album covers. This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
