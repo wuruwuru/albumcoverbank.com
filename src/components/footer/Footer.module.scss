@@ -6,6 +6,10 @@
   display: flex;
   justify-content: space-between;
 
+  a:visited {
+    color: black;
+  }
+
   span {
     display: block;
     padding: 2.6rem 0;
