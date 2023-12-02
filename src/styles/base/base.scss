@@ -25,3 +25,8 @@ a {
   text-decoration: none;
   outline: none;
 }
+
+html:has(.single-cover-modal) {
+  height: 100%;
+  overflow: hidden;
+}

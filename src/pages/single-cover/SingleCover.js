@@ -1,18 +1,19 @@
-import React from "react"
+import React from "react";
 // import { useParams } from "react-router-dom";
-import classes from "./SingleCover.module.scss"
+import classes from "./SingleCover.module.scss";
 
 // IMAGE IMPORT
-import Close from "../../assets/CircularCloseButton.svg"
+import Close from "../../assets/CircularCloseButton.svg";
+import stories from "./stories.json";
 
 export default function SingleCover({ cover, setOpenModal }) {
   // const { id } = useParams();
-
+  console.log(cover);
   return (
     <div
-      className={classes.singleCover}
+      className={classes.singleCover + " single-cover-modal"}
       onClick={() => {
-        setOpenModal(false)
+        setOpenModal(false);
       }}
     >
       <div className={classes.coverWrapper}>
@@ -21,7 +22,7 @@ export default function SingleCover({ cover, setOpenModal }) {
           src={Close}
           alt="close"
           onClick={() => {
-            setOpenModal(false)
+            setOpenModal(false);
           }}
         />
         <div className={classes.coverFirstWrapper}>
@@ -59,19 +60,45 @@ export default function SingleCover({ cover, setOpenModal }) {
               <li>
                 <p> Source</p>
                 <a href={cover?.fields?.Source} target="_blank">
-                  <h3 className={classes.truncate}>{cover?.fields?.Source}</h3>
+                  <h3 className={classes.truncate}>
+                    {cover?.fields?.Source?.includes("spotify")
+                      ? "Spotify"
+                      : cover?.fields?.Source?.includes("instagram")
+                      ? "Instagram"
+                      : cover?.fields?.Source?.includes("apple")
+                      ? "Apple Music"
+                      : cover?.fields?.Source?.includes("boomplay")
+                      ? "Boomplay"
+                      : "Link"}
+                  </h3>
                 </a>
               </li>
             </ul>
           </div>
         </div>
-
-        <div className={classes.reportWrapper}>
+        {/* <div className={classes.reportWrapper}>
           <a href={"mailto:samson@wuruwuru.com?subject=Report%20Album%20Cover%3A%20" + cover?.fields?.Album + " by " + cover?.fields?.ArtistWebsite} target="_blank">
             {" "}
             <p className={classes.reportLink}>Report</p>
           </a>
-        </div>
+        </div> */}
+        {stories?.[cover.fields.UUID]?.artist ? (
+          <p className={classes.artist_stories}>
+            {stories?.[cover.fields.UUID]?.artist ?? null}
+          </p>
+        ) : null}
+
+        {stories?.[cover.fields.UUID]?.album ? (
+          <p className={classes.album_stories}>
+            {stories?.[cover.fields.UUID]?.album ?? null}
+          </p>
+        ) : null}
+
+        {stories?.[cover.fields.UUID]?.designer ? (
+          <p className={classes.designer_stories}>
+            {stories?.[cover.fields.UUID]?.designer ?? null}
+          </p>
+        ) : null}
       </div>
 
       {/* <aside>
@@ -95,5 +122,5 @@ export default function SingleCover({ cover, setOpenModal }) {
         </div>
       </aside> */}
     </div>
-  )
+  );
 }

@@ -13,6 +13,7 @@
   justify-content: center;
   z-index: 2;
   background-color: rgba(20, 18, 16, 0.15);
+  overflow: hidden;
 
   @include media("<=phone") {
     z-index: 3;
@@ -62,7 +63,9 @@
   background: #fcf3ed;
   box-shadow: 1px 32px 21px 9px rgba(70, 70, 70, 0.2);
   width: 92.5rem;
-  max-height: 52.4rem;
+  min-height: 0;
+  max-height: 90%;
+  overflow: hidden auto;
   gap: 5rem;
   padding: 7.2rem 7rem;
   border-radius: 1.6rem;
@@ -192,5 +195,21 @@
     }
   }
 
+}
+
+.artist_stories {
+  font-size: 1.6rem;
+  line-height: 1.8rem;
+}
+
+.album_stories {
+  font-size: 1.6rem;
+  line-height: 1.8rem;
+
+}
+
+.designer_stories {
+  font-size: 1.6rem;
+  line-height: 1.8rem;
 
 }
