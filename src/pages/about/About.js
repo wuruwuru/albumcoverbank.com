@@ -11,10 +11,10 @@ export default function About() {
       <div className={classes.aboutWrapper}>
         <section>
           <h3>About</h3>
-          <p>Cover Bank is a digital archive of Nigerian album covers from 1950 to date. It provides a unique view into the evolution of Nigerian music.</p>
-          <p>At its core, the archive is a research project that hopes to establish the history of Nigerian graphic design and highlight cover artists as important cultural producers.</p>
+          <p>Cover Bank is a digital archive of 5300+ Nigerian album covers from 1950 to date. It provides a unique view into the evolution of Nigerian music.</p>
+          <p>At its core, the archive is a research project that hopes to establish the history of Nigerian graphic design. Through this website, we hope to highlight cover artists as important cultural producers.</p>
           <p>Cover Bank is also a platform for design and storytelling inspiration. Our goal is to become a valuable tool for artists, enthusiasts, educators and researchers of all kind.</p>
-          <p>The project is built by wuruwuru, a collective for independent creators and maintained by a team of contributors.</p>
+          <p>The archived is built and maintained by wuruwuru, a collective for independent creators in Lagos.</p>
         </section>
         <section>
           <h3>Essays</h3>
@@ -29,7 +29,7 @@ export default function About() {
         </section>
         <section>
           <h3>Join us</h3>
-          <p>You can contribute the Cover Bank project by helping to maintain the database, working on the website or publishing a story inspired by the covers. If you're interested, please send us an email.</p>
+          <p>You can contribute the Cover Bank project by helping to maintain the database, working on the website or publishing a story inspired by the covers. If you're interested, please <a href="mailto:coverbank@wuruwuru.com">send us an email</a>.</p>
         </section>
       </div>
 
