@@ -3,19 +3,20 @@ import {
   Route,
   Routes,
   Navigate,
-} from "react-router-dom"
-import { Helmet } from "react-helmet"
+} from "react-router-dom";
+import { Helmet } from "react-helmet";
 // STYLES
-import "../src/styles/App.scss"
+import "../src/styles/App.scss";
 
 // IMPORTS
 
 // PAGES AND COMPONENTS
-import Navbar from "./components/navBar/Navbar"
-import CoverBank from "./pages/cover-bank/CoverBank"
-import About from "./pages/about/About"
-import SingleCover from "./pages/single-cover/SingleCover"
-import Footer from "./components/footer/Footer"
+import Navbar from "./components/navBar/Navbar";
+import CoverBank from "./pages/cover-bank/CoverBank";
+import About from "./pages/about/About";
+import SingleCover from "./pages/single-cover/SingleCover";
+import Footer from "./components/footer/Footer";
+import Funk from "./pages/funk/Funk";
 
 function App() {
   return (
@@ -35,13 +36,14 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/cover-bank/:id" element={<SingleCover />} />
             <Route path="*" element={<Navigate to="/" />} />
+            <Route path="/funk" element={<Funk />} />
           </Routes>
         </div>
 
         <Footer />
       </Router>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

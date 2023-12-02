@@ -1,0 +1,21 @@
+/* Styling goes here */
+
+.image-grid ul {
+  padding: 2rem;
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.image-item img {
+  height: 40rem;
+  border-radius: 5px;
+  width: auto;
+}
+
+@media (max-width: 767px) {
+  .image-item img {
+    height: 20rem;
+    width: auto;
+  }
+}
