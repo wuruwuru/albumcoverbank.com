@@ -2,10 +2,11 @@ import { useQuery,QueryCache } from "react-query";
 import axios from "axios";
 // import { useState, useEffect } from "react";
 
-const accessToken = process.env.AIRTABLE_ACCESS_TOKEN;
+const apiKey = process.env.AIRTABLE_ACCESS_TOKEN;
+const apiBase = process.env.AIRTABLE_API_BASE;
 
 const config = {
-  headers: { Authorization: `Bearer ${accessToken}` },
+  headers: { Authorization: `Bearer ${apiKey}` },
 };
 const queryCache = new QueryCache()
 // FETCH ALL COVERS
