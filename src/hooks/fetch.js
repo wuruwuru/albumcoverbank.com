@@ -1,6 +1,5 @@
 import { useQuery,QueryCache } from "react-query";
 import axios from "axios";
-// import { useState, useEffect } from "react";
 
 const apiKey = process.env.AIRTABLE_ACCESS_TOKEN;
 const apiBase = process.env.AIRTABLE_API_BASE;
