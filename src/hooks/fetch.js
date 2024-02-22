@@ -4,8 +4,6 @@ import axios from "axios";
 const apiKey = process.env.REACT_APP_AIRTABLE_ACCESS_TOKEN;
 const apiBase = process.env.REACT_APP_AIRTABLE_API_BASE;
 
-console.log('test', process.env);
-
 const config = {
   headers: { Authorization: `Bearer ${apiKey}` },
 };
