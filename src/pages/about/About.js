@@ -12,9 +12,9 @@ export default function About() {
         <section>
           <h3>About</h3>
           <p>Cover Bank is a digital archive of 5300+ Nigerian album covers from 1950 to date. It provides a unique view into the evolution of Nigerian music.</p>
-          <p>At its core, the archive is a research project that hopes to establish the history of Nigerian graphic design. Through this website, we hope to highlight cover artists as important cultural producers.</p>
-          <p>Cover Bank is also a platform for design and storytelling inspiration. Our goal is to become a valuable tool for artists, enthusiasts, educators and researchers of all kind.</p>
-          <p>The archived is built and maintained by wuruwuru, a collective for independent creators in Lagos.</p>
+          <p>At its core, the archive is a research project to establish the history of Nigerian graphic design. Through this website, we hope to highlight cover artists as important cultural producers.</p>
+          <p>Cover Bank is also a platform for design and storytelling. Our goal is to become a valuable tool for artists, enthusiasts, educators and researchers of all kind.</p>
+          <p>The archive is built and maintained by Helloworld, a technology studio for cultural production. The project is sponsored by wuruwuru, a production studio for passion projects.</p>
         </section>
         <section>
           <h3>Essays</h3>
