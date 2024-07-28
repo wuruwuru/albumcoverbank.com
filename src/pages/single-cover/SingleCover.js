@@ -36,11 +36,11 @@ export default function SingleCover({ cover, setOpenModal }) {
             <ul>
               <li>
                 <p> Artist</p>
-                <span>{cover?.fields?.ArtistWebsite}</span>
+                <span>{cover?.fields?.MusicArtistString}</span>
               </li>
               <li>
-                <p> Designer</p>
-                <span>{cover?.fields?.DesignerWebsite}</span>
+                <p> Cover</p>
+                <span>{cover?.fields?.CoverArtistString}</span>
               </li>
               <li>
                 <p> Year</p>

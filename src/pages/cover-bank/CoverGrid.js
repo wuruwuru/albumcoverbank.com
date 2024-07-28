@@ -42,7 +42,7 @@ export default function CoverGrid({
                 ) : null}
               </figure>
               <p>{cover?.fields?.Album}</p>
-              <h4>{cover?.fields?.ArtistWebsite}</h4>
+              <h4>{cover?.fields?.CoverArtistString}</h4>
             </div>
           ))}
       </div>
