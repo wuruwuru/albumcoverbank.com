@@ -118,23 +118,41 @@ export const useFetchSearch = (offset, searchTerm, selectedOptions) => {
   const genreOption = genre ? genre.replace("&", "%26") : "";
 
   const url = `https://api.airtable.com/v0/${apiBase}/Covers`;
+  
+  // Search parameters
   const searchAlbum = `SEARCH("${searchTerm}", {Album})`;
-const searchArtist = `SEARCH("${searchTerm}", {Artist})`;
-const searchDesigner = `SEARCH("${searchTerm}", {Designer})`;
-const filterArtist = `SEARCH("${artistOption}", {Artist})`;
-const filterDesigner = `SEARCH("${designerOption}", {Designer})`;
-const filterGenre = `SEARCH("${genreOption}", {Genre})`;
-const filterYear = `{Year} = '${year}'`;
+  const searchArtist = `SEARCH("${searchTerm}", {Music Artist})`;
+  const searchDesigner = `SEARCH("${searchTerm}", {Cover Artist})`;
+  
+  // Filter parameters (only include if values are present)
+  const filterArtist = artistOption ? `SEARCH("${artistOption}", {Music Artist})` : "";
+  const filterDesigner = designerOption ? `SEARCH("${designerOption}", {Cover Artist})` : "";
+  const filterGenre = genreOption ? `SEARCH("${genreOption}", {Genre})` : "";
+  const filterYear = year ? `{Year} = "${year}"` : "";
 
-const query = year
-  ? `?filterByFormula=AND(OR(${searchArtist},${searchAlbum},${searchDesigner}), ${filterDesigner}, ${filterArtist}, ${filterGenre}, ${filterYear})`
-  : `?filterByFormula=AND(OR(${searchArtist},${searchAlbum},${searchDesigner}), ${filterDesigner}, ${filterArtist}, ${filterGenre})`;
+  // Combine search conditions
+  const searchConditions = `OR(${searchArtist}, ${searchAlbum}, ${searchDesigner})`;
+
+  // Combine filter conditions only if they exist
+  const filterConditions = [
+    filterArtist,
+    filterDesigner,
+    filterGenre,
+    filterYear,
+  ]
+    .filter(Boolean) // This removes empty filters
+    .join(", ");
+
+  // Final query construction
+  const query = filterConditions
+    ? `?filterByFormula=AND(${searchConditions}, ${filterConditions})`
+    : `?filterByFormula=${searchConditions}`;
 
   const link = `${url}${query}`;
 
   const fetchSearch = async () => {
     try {
-      const { data } = await axios.get(`${link}`, config);
+      const { data } = await axios.get(link, config);
       return data;
     } catch (error) {
       console.log({ error: error.response || error });
@@ -152,6 +170,7 @@ const query = year
   );
   return { status, data, isFetching, refetch };
 };
+
 
 // FETCH ALL Designers
 // export const useFetchDesigners = (artistFilter) => {
