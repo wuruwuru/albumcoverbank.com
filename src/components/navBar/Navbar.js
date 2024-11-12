@@ -32,8 +32,8 @@ export default function Navbar() {
       >
         <div className={classes.survey}>
           <p>
-            We're hoping to get feedback on how you use Album Cover Bank. Click
-            this banner and fill a quick survey
+            We're hoping to get feedback on how you use Album Cover Bank. Please
+            fill this brief survey
           </p>
         </div>
       </a>
