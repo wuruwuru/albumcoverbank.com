@@ -3,7 +3,7 @@
 
 .Navbar {
   width: 95%;
-  margin: 4.09rem auto 0;
+  margin: 3.09rem auto 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -63,5 +63,36 @@
 
   .Navbar & {
     color: #683522;
+  }
+}
+
+.survey {
+  width: 100%;
+  background-color: #683522;
+  color: white;
+  font-size: 1.2rem;
+  text-align: center;
+  padding: 20px 0;
+
+  @include media("<=phone") {
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    line-height: 2rem;
+  }
+
+  p {
+    animation: bounce 7s infinite ease-in-out;
+  }
+}
+
+@keyframes bounce {
+  0%, 10% {
+    transform: translateY(0);
+  }
+  5% {
+    transform: translateY(-3px);
+  }
+  100% {
+    transform: translateY(0);
   }
 }

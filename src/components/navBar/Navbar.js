@@ -1,30 +1,43 @@
-import React, { useState, useEffect } from "react"
-import { NavLink } from "react-router-dom"
-import { Link } from "react-router-dom"
+import React, { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 // STYLES
-import classes from "./Navbar.module.scss"
+import classes from "./Navbar.module.scss";
 
 // IMAGE IMPORT
-import Logo from "../../assets/logo.svg"
-import HamburgerIcon from "../HamburgerIcon"
-import MobileHamburger from "../MobileHamburger"
+import Logo from "../../assets/logo.svg";
+import HamburgerIcon from "../HamburgerIcon";
+import MobileHamburger from "../MobileHamburger";
 
-import { MobileCheck } from "../../utils/IsMobile"
+import { MobileCheck } from "../../utils/IsMobile";
 
 export default function Navbar() {
-  const [isShowing, setIsShowing] = useState(false)
-  const [mobile, setMobile] = useState()
+  const [isShowing, setIsShowing] = useState(false);
+  const [mobile, setMobile] = useState();
 
   function onShow() {
-    setIsShowing(true)
+    setIsShowing(true);
   }
   useEffect(() => {
-    const isMobile = MobileCheck()
-    setMobile(isMobile)
-  }, [])
+    const isMobile = MobileCheck();
+    setMobile(isMobile);
+  }, []);
   return (
     <>
+      <a
+        href="https://airtable.com/appTOXK95JzU2Ml0r/pagNaJik0vOZrTkLA/form"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <div className={classes.survey}>
+          <p>
+            We're hoping to get feedback on how you use Album Cover Bank. Click
+            this banner and fill a quick survey
+          </p>
+        </div>
+      </a>
+
       <nav className={classes.Navbar}>
         <div className={classes.Logo}>
           <Link to="/">
@@ -81,5 +94,5 @@ export default function Navbar() {
       {/* DROPDOWN */}
       {isShowing && <MobileHamburger setIsShowing={setIsShowing} />}
     </>
-  )
+  );
 }
