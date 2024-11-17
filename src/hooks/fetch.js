@@ -1,4 +1,4 @@
-import { useQuery,QueryCache } from "react-query";
+import { useQuery, QueryCache } from "react-query";
 import axios from "axios";
 
 const apiKey = process.env.REACT_APP_AIRTABLE_ACCESS_TOKEN;
@@ -7,7 +7,7 @@ const apiBase = process.env.REACT_APP_AIRTABLE_API_BASE;
 const config = {
   headers: { Authorization: `Bearer ${apiKey}` },
 };
-const queryCache = new QueryCache()
+const queryCache = new QueryCache();
 // FETCH ALL COVERS
 export const useFetchAllCovers = (offset, pageSize, searchTerm) => {
   const fetchAllCover = async () => {
@@ -30,9 +30,10 @@ export const useFetchAllCovers = (offset, pageSize, searchTerm) => {
       refetchOnWindowFocus: true,
       refetchOnMount: true,
       keepPreviousData: true,
-      refetchInterval:1000,
+      refetchInterval: 1000,
       cache: queryCache,
-      staleTime: 1 * 60 * 1000, cacheTime: 5 * 60 * 1000
+      staleTime: 1 * 60 * 1000,
+      cacheTime: 5 * 60 * 1000,
     }
   );
   return { status, data, isFetching, refetch };
@@ -118,15 +119,19 @@ export const useFetchSearch = (offset, searchTerm, selectedOptions) => {
   const genreOption = genre ? genre.replace("&", "%26") : "";
 
   const url = `https://api.airtable.com/v0/${apiBase}/Covers`;
-  
+
   // Search parameters
   const searchAlbum = `SEARCH("${searchTerm}", {Album})`;
   const searchArtist = `SEARCH("${searchTerm}", {Music Artist})`;
   const searchDesigner = `SEARCH("${searchTerm}", {Cover Artist})`;
-  
+
   // Filter parameters (only include if values are present)
-  const filterArtist = artistOption ? `SEARCH("${artistOption}", {Music Artist})` : "";
-  const filterDesigner = designerOption ? `SEARCH("${designerOption}", {Cover Artist})` : "";
+  const filterArtist = artistOption
+    ? `SEARCH("${artistOption}", {Music Artist})`
+    : "";
+  const filterDesigner = designerOption
+    ? `SEARCH("${designerOption}", {Cover Artist})`
+    : "";
   const filterGenre = genreOption ? `SEARCH("${genreOption}", {Genre})` : "";
   const filterYear = year ? `{Year} = "${year}"` : "";
 
@@ -170,47 +175,3 @@ export const useFetchSearch = (offset, searchTerm, selectedOptions) => {
   );
   return { status, data, isFetching, refetch };
 };
-
-
-// FETCH ALL Designers
-// export const useFetchDesigners = (artistFilter) => {
-//   const [artistArr, setArtistArr] = useState([]);
-//   const arr = [];
-//   const [offset, setOffset] = useState("");
-//   const fetchDesigners = async () => {
-//     try {
-//       const { data } = await axios.get(
-//         `https://api.airtable.com/v0/${apiBase}/Designers?pageSize=100&view=All%20Designers&fields%5B%5D=Name&offset=${offset}`,
-//         config
-//       );
-//       console.log(data);
-
-//       if (data?.offset !== undefined) {
-//         setOffset(data?.offset);
-//       }
-
-//       data?.records.map((artist) => {
-//         return arr.push({
-//           value: artist.fields.Name.toLowerCase(),
-//           label: artist.fields.Name,
-//         });
-//       });
-//       setArtistArr([...artistArr, ...arr]);
-
-//       return artistArr;
-//     } catch (error) {
-//       console.log({ error: error.response || error });
-//     }
-//   };
-
-//   const { status, data, isFetching, refetch } = useQuery(
-//     ["allArtists", artistFilter, offset],
-//     () => fetchDesigners(),
-//     {
-//       refetchOnWindowFocus: true,
-//       refetchOnMount: true,
-//       keepPreviousData: true,
-//     }
-//   );
-//   return { status, data, isFetching, refetch };
-// };

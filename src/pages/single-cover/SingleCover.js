@@ -1,18 +1,15 @@
-import React from "react"
-// import { useParams } from "react-router-dom";
-import classes from "./SingleCover.module.scss"
+import React from "react";
+import classes from "./SingleCover.module.scss";
 
 // IMAGE IMPORT
-import Close from "../../assets/CircularCloseButton.svg"
+import Close from "../../assets/CircularCloseButton.svg";
 
 export default function SingleCover({ cover, setOpenModal }) {
-  // const { id } = useParams();
-
   return (
     <div
       className={classes.singleCover}
       onClick={() => {
-        setOpenModal(false)
+        setOpenModal(false);
       }}
     >
       <div className={classes.coverWrapper}>
@@ -21,7 +18,7 @@ export default function SingleCover({ cover, setOpenModal }) {
           src={Close}
           alt="close"
           onClick={() => {
-            setOpenModal(false)
+            setOpenModal(false);
           }}
         />
         <div className={classes.coverFirstWrapper}>
@@ -67,33 +64,20 @@ export default function SingleCover({ cover, setOpenModal }) {
         </div>
 
         <div className={classes.reportWrapper}>
-          <a href={"mailto:coverbank@wuruwuru.com?subject=Report%20Album%20Cover%3A%20" + cover?.fields?.Album + " by " + cover?.fields?.ArtistWebsite} target="_blank">
+          <a
+            href={
+              "mailto:coverbank@wuruwuru.com?subject=Report%20Album%20Cover%3A%20" +
+              cover?.fields?.Album +
+              " by " +
+              cover?.fields?.ArtistWebsite
+            }
+            target="_blank"
+          >
             {" "}
             <p className={classes.reportLink}>Report</p>
           </a>
         </div>
       </div>
-
-      {/* <aside>
-        <div>
-          <h3>Popular Covers</h3>
-        </div>
-        <div className={classes.asideDiv}>
-          <img src={asa} alt="" />
-          <p>album title</p>
-          <p>designer name</p>
-        </div>
-        <div className={classes.asideDiv}>
-          <img src={asa} alt="" />
-          <p>album title</p>
-          <p>designer name</p>
-        </div>
-        <div className={classes.asideDiv}>
-          <img src={asa} alt="" />
-          <p>album title</p>
-          <p>designer name</p>
-        </div>
-      </aside> */}
     </div>
-  )
+  );
 }
