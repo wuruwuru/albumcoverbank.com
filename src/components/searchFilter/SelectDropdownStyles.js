@@ -4,7 +4,6 @@ export const colourStyles = {
     ...styles,
     background: "#FDFDFD",
     fontSize: "1.4rem",
-    // minHeight: '35.2rem',
     "::-webkit-scrollbar": {
       display: "none",
     },
@@ -51,7 +50,6 @@ export const colourStyles = {
 
   dropdownIndicator: (styles) => ({
     ...styles,
-    // color: "#FFAE12",
   }),
   indicatorSeparator: (styles) => ({ display: "none" }),
   loadingIndicator: (styles) => ({ display: "none" }),
