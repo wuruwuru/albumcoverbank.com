@@ -1,32 +1,19 @@
 import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import { useFetchArtists } from "../../hooks/fetch";
-import { Genre } from "../../data/Genre";
+import { Genre, ArtistList, DesignerList } from "../../data/Genre";
 
 // STYLE IMPORT
 import classes from "./SearchFilter.module.scss";
 import { colourStyles } from "./SelectDropdownStyles";
 
 // IMAGE IMPORT
-import Close from "../../assets/closeIcon.webp";
 import Logo from "../../assets/logo.svg";
 
-export default function SearchFilter({
-  setIsShowing,
-  setSelectedOptions,
-  capitalizeWord,
-}) {
-  const [artistFilter, setArtistFilter] = useState("");
-  const [designerFilter, setDesignerFilter] = useState("");
-  const { status: artistStatus, data: artists } = useFetchArtists(
-    "Artists",
-    artistFilter
-  );
-  const { status: designerStatus, data: designers } = useFetchArtists(
-    "Designers",
-    designerFilter
-  );
-  const [genreOptions, setGenreOptions] = useState("");
+export default function SearchFilter({ setSelectedOptions }) {
+  const [artistFilter, setArtistFilter] = useState([]);
+  const [designerFilter, setDesignerFilter] = useState([]);
+  const [genreOptions, setGenreOptions] = useState([]);
   const [selectedFilter, setSelectedFilter] = useState({
     artist: "",
     designer: "",
@@ -34,19 +21,33 @@ export default function SearchFilter({
     genre: "",
   });
 
-  // GENRE FILTER FUNCTIONALITY
+  // Initialize designer options
   useEffect(() => {
-    const arr = [];
-    Genre.map((artist) => {
-      return arr.push({
-        value: artist,
-        label: artist,
-      });
-    });
+    const arr = DesignerList.map((designer) => ({
+      value: designer,
+      label: designer,
+    }));
+    setDesignerFilter(arr);
+  }, []);
+
+  // Initialize artist options
+  useEffect(() => {
+    const arr = ArtistList.map((artist) => ({
+      value: artist,
+      label: artist,
+    }));
+    setArtistFilter(arr);
+  }, []);
+
+  // Initialize genre options
+  useEffect(() => {
+    const arr = Genre.map((genre) => ({
+      value: genre,
+      label: genre,
+    }));
     setGenreOptions(arr);
   }, []);
 
-  // RESET FUNCTIONALITY
   const handleReset = () => {
     setSelectedFilter({
       artist: "",
@@ -56,44 +57,113 @@ export default function SearchFilter({
     });
   };
 
-  // SUBMIT FUNCTIONALITY
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     setSelectedOptions({
       artist: selectedFilter.artist,
       designer: selectedFilter.designer,
       year: selectedFilter.year,
       genre: selectedFilter.genre,
     });
-    setIsShowing(false);
   };
+
+  useEffect(() => {
+    handleSubmit();
+  }, [selectedFilter]);
 
   return (
     <div className={classes.FilterContainer}>
-      <form className={classes.FilterForm} onSubmit={(e) => handleSubmit(e)}>
-        {/* HEADER */}
-        <div className={classes.FormHeader}>
-          <h4>FILTER</h4>
-          <img
-            src={Close}
-            alt="close"
-            onClick={() => {
-              setIsShowing(false);
-            }}
-          />
-        </div>
-
-        {/* LOGO FOR MOBILE  */}
+      <div className={classes.FilterForm}>
+        {/* LOGO FOR MOBILE */}
         <img className={classes.mobileLogo} src={Logo} alt="cover bank logo" />
 
         {/* BODY */}
         <div className={classes.FormBody}>
-          {/* YEAR FILTER */}
+          {/* DESIGNER FILTER */}
           <label>
-            <span>Year </span>
+            <div className={classes.selectContainer}>
+              <Select
+                onChange={(e) =>
+                  setSelectedFilter({ ...selectedFilter, designer: e?.label })
+                }
+                placeholder="Designer"
+                value={
+                  selectedFilter.designer
+                    ? {
+                        label: selectedFilter.designer,
+                        value: selectedFilter.designer,
+                      }
+                    : null
+                }
+                options={designerFilter}
+                isSearchable={true}
+                onInputChange={(value) => {
+                  const filtered = DesignerList.filter((designer) =>
+                    designer.toLowerCase().includes(value.toLowerCase())
+                  ).map((designer) => ({ value: designer, label: designer }));
+                  setDesignerFilter(filtered);
+                }}
+                styles={colourStyles}
+              />
+            </div>
+          </label>
+
+          {/* ARTIST FILTER */}
+          <label>
+            <div className={classes.selectContainer}>
+              <Select
+                onChange={(e) =>
+                  setSelectedFilter({ ...selectedFilter, artist: e?.label })
+                }
+                placeholder="Artist"
+                value={
+                  selectedFilter.artist
+                    ? {
+                        label: selectedFilter.artist,
+                        value: selectedFilter.artist,
+                      }
+                    : null
+                }
+                options={artistFilter}
+                isSearchable={true}
+                onInputChange={(value) => {
+                  const filtered = ArtistList.filter((artist) =>
+                    artist.toLowerCase().includes(value.toLowerCase())
+                  ).map((artist) => ({ value: artist, label: artist }));
+                  setArtistFilter(filtered);
+                }}
+                styles={colourStyles}
+              />
+            </div>
+          </label>
+
+          {/* GENRE FILTER */}
+          <label>
+            <div className={classes.selectContainer}>
+              <Select
+                onChange={(e) =>
+                  setSelectedFilter({ ...selectedFilter, genre: e?.label })
+                }
+                value={
+                  selectedFilter.genre
+                    ? {
+                        label: selectedFilter.genre,
+                        value: selectedFilter.genre,
+                      }
+                    : null
+                }
+                options={genreOptions}
+                isSearchable={true}
+                placeholder="Genre"
+                styles={colourStyles}
+              />
+            </div>
+          </label>
+
+          {/* YEAR FROM */}
+          <label>
             <input
               className={classes.inputContainer}
-              placeholder="Enter Value"
+              placeholder="Year"
               type="number"
               value={selectedFilter.year || ""}
               onChange={(e) =>
@@ -102,80 +172,14 @@ export default function SearchFilter({
             />
           </label>
 
-          {/* GENRE FILTER */}
-          <label>
-            <span>Genre</span>
-            <div className={classes.selectContainer}>
-              <Select
-                onChange={(e) =>
-                  setSelectedFilter({ ...selectedFilter, genre: e?.label })
-                }
-                value={
-                  selectedFilter.genre ? { label: selectedFilter.genre } : ""
-                }
-                options={genreOptions}
-                isSearchable={true}
-                placeholder="Select Genre"
-                styles={colourStyles}
-              />
-            </div>
-          </label>
-
-          {/* ARTIST FILTER */}
-          <label>
-            <span>Artist </span>
-            <div className={classes.selectContainer}>
-              <Select
-                onChange={(e) =>
-                  setSelectedFilter({ ...selectedFilter, artist: e?.label })
-                }
-                placeholder="Select Artist"
-                value={
-                  selectedFilter.artist ? { label: selectedFilter.artist } : ""
-                }
-                options={artists}
-                isLoading={artistStatus === "loading"}
-                onInputChange={(value) =>
-                  setArtistFilter(capitalizeWord(value))
-                }
-                styles={colourStyles}
-              />
-            </div>
-          </label>
-
-          {/* DESIGNER FILTER */}
-          <label>
-            <span>Designer </span>
-            <div className={classes.selectContainer}>
-              <Select
-                onChange={(e) =>
-                  setSelectedFilter({ ...selectedFilter, designer: e?.label })
-                }
-                options={designers}
-                value={
-                  selectedFilter.designer
-                    ? { label: selectedFilter.designer }
-                    : ""
-                }
-                isLoading={designerStatus === "loading"}
-                onInputChange={(value) =>
-                  setDesignerFilter(capitalizeWord(value))
-                }
-                placeholder="Select Designer"
-                styles={colourStyles}
-              />
-            </div>
-          </label>
-        </div>
-
-        {/* FILTER BUTTONS */}
-        <div className={classes.FormButtons}>
-          <div className={classes.resetBtn} onClick={handleReset}>
-            RESET
+          {/* RESET */}
+          <div className={classes.reset}>
+            <p className={classes.resetButton} onClick={handleReset}>
+              Reset
+            </p>
           </div>
-          <button className={classes.applyBtn}>APPLY</button>
         </div>
-      </form>
+      </div>
     </div>
   );
 }

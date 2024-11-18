@@ -2,7 +2,8 @@
 export const colourStyles = {
   menuList: (styles) => ({
     ...styles,
-    background: "#FDFDFD",
+    background: "#fdfdfd",
+    borderRadius: "1.2rem",
     fontSize: "1.4rem",
     "::-webkit-scrollbar": {
       display: "none",
@@ -21,10 +22,13 @@ export const colourStyles = {
     ...styles,
     background: isFocused ? "#dedede" : isSelected ? "#683522" : undefined,
     zIndex: 1,
+    padding: "1rem",
   }),
   menu: (base) => ({
     ...base,
     fontSize: "1.4rem",
+    borderRadius: "1.2rem",
+    borderColor: "#cccccc",
     zIndex: 100,
   }),
 
@@ -32,7 +36,7 @@ export const colourStyles = {
     return {
       ...defaultStyles,
       fontSize: "1.4rem",
-      color: "#4C4C4C",
+      color: "#808080",
     };
   },
 
@@ -44,7 +48,7 @@ export const colourStyles = {
       borderColor: "#cccccc",
     },
     height: "4.2rem",
-    width: "26rem",
+    width: "16rem",
     borderRadius: "1.2rem",
   }),
 

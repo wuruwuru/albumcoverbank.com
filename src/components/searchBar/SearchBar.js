@@ -9,8 +9,6 @@ import FilterIcon from "../../assets/filterIcon.webp";
 import SearchFilter from "../searchFilter/SearchFilter";
 
 export default function SearchBar({ setSearchTerm, setSelectedOptions }) {
-  const [isShowing, setIsShowing] = useState(false);
-
   const capitalizeWord = (str) => {
     return str
       .toLowerCase()
@@ -30,16 +28,13 @@ export default function SearchBar({ setSearchTerm, setSelectedOptions }) {
           placeholder="Search Albums, Artists & Designers"
           onChange={(e) => setSearchTerm(capitalizeWord(e.target.value))}
         />
-        <img src={FilterIcon} alt="filter" onClick={() => setIsShowing(true)} />
+        {/* <img src={FilterIcon} alt="filter" onClick={() => setIsShowing(true)} /> */}
       </div>
       {/* FILTER DROPDOWN */}
-      {isShowing && (
-        <SearchFilter
-          setIsShowing={setIsShowing}
-          setSelectedOptions={setSelectedOptions}
-          capitalizeWord={capitalizeWord}
-        />
-      )}
+      <SearchFilter
+        setSelectedOptions={setSelectedOptions}
+        capitalizeWord={capitalizeWord}
+      />
     </div>
   );
 }

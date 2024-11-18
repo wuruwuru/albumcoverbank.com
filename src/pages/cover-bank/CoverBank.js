@@ -39,7 +39,7 @@ export default function CoverBank() {
     data: allCovers,
     isFetching: homeFetch,
   } = useFetchAllCovers(offset, pageSize, "");
-
+  console.log(selectedOptions);
   // FETCH SEARCH RESULTS
   const {
     status: searchStatus,
