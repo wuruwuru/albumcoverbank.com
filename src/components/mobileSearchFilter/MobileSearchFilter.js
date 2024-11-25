@@ -147,7 +147,7 @@ const MobileSearchFilter = ({ setSelectedOptions }) => {
                     : null
                 }
                 options={yearOptions}
-                isSearchable={false}
+                isSearchable={true}
                 styles={colourStyles}
                 isClearable={true}
               />
