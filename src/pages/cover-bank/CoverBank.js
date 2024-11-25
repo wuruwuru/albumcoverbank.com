@@ -7,7 +7,6 @@ import classes from "./CoverBank.module.scss";
 // IMPORT COMPONENTS
 import SearchBar from "../../components/searchBar/SearchBar";
 
-import SelectedFilter from "./SelectedFilter";
 import SingleCover from "../single-cover/SingleCover";
 // IMAGE IMPORT
 import { SearchResult } from "../../components/searchResult";
@@ -91,10 +90,6 @@ export default function CoverBank() {
           {/* SEARCH BAR */}
           <SearchBar
             setSearchTerm={setSearchTerm}
-            setSelectedOptions={setSelectedOptions}
-          />
-          <SelectedFilter
-            selectedOptions={selectedOptions}
             setSelectedOptions={setSelectedOptions}
           />
 

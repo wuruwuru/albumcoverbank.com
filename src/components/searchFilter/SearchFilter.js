@@ -1,108 +1,89 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
+import { useSearchParams } from "react-router-dom";
 import Select from "react-select";
-import { useFetchArtists } from "../../hooks/fetch";
-import { Genre, ArtistList, DesignerList } from "../../data/Genre";
+import { Genre, ArtistList, DesignerList, Years } from "../../data/Genre";
 
 // STYLE IMPORT
 import classes from "./SearchFilter.module.scss";
 import { colourStyles } from "./SelectDropdownStyles";
 
-// IMAGE IMPORT
-import Logo from "../../assets/logo.svg";
-
 export default function SearchFilter({ setSelectedOptions }) {
-  const [artistFilter, setArtistFilter] = useState([]);
-  const [designerFilter, setDesignerFilter] = useState([]);
-  const [genreOptions, setGenreOptions] = useState([]);
-  const [selectedFilter, setSelectedFilter] = useState({
-    artist: "",
-    designer: "",
-    year: "",
-    genre: "",
-  });
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  // Initialize designer options
-  useEffect(() => {
-    const arr = DesignerList.map((designer) => ({
-      value: designer,
-      label: designer,
-    }));
-    setDesignerFilter(arr);
-  }, []);
+  const designerOptions = useMemo(
+    () =>
+      DesignerList.map((designer) => ({ value: designer, label: designer })),
+    []
+  );
 
-  // Initialize artist options
-  useEffect(() => {
-    const arr = ArtistList.map((artist) => ({
-      value: artist,
-      label: artist,
-    }));
-    setArtistFilter(arr);
-  }, []);
+  const artistOptions = useMemo(
+    () => ArtistList.map((artist) => ({ value: artist, label: artist })),
+    []
+  );
 
-  // Initialize genre options
+  const genreOptions = useMemo(
+    () => Genre.map((genre) => ({ value: genre, label: genre })),
+    []
+  );
+
+  const yearOptions = useMemo(
+    () => Years.map((year) => ({ value: year, label: year })),
+    []
+  );
+
+  const getParam = (key, fallback = "") => searchParams.get(key) || fallback;
+
+  const selectedFilter = useMemo(
+    () => ({
+      artist: getParam("artist"),
+      designer: getParam("designer"),
+      year: getParam("year"),
+      genre: getParam("genre"),
+    }),
+    [searchParams]
+  );
+
+  const updateFilter = (key, value) => {
+    const newParams = { ...Object.fromEntries(searchParams.entries()) };
+    if (value) {
+      newParams[key] = value;
+    } else {
+      delete newParams[key];
+    }
+    setSearchParams(newParams);
+  };
+
   useEffect(() => {
-    const arr = Genre.map((genre) => ({
-      value: genre,
-      label: genre,
-    }));
-    setGenreOptions(arr);
-  }, []);
+    setSelectedOptions(selectedFilter);
+  }, [selectedFilter, setSelectedOptions]);
 
   const handleReset = () => {
-    setSelectedFilter({
-      artist: "",
-      designer: "",
-      year: "",
-      genre: "",
-    });
+    setSearchParams({});
   };
-
-  const handleSubmit = () => {
-    setSelectedOptions({
-      artist: selectedFilter.artist,
-      designer: selectedFilter.designer,
-      year: selectedFilter.year,
-      genre: selectedFilter.genre,
-    });
-  };
-
-  useEffect(() => {
-    handleSubmit();
-  }, [selectedFilter]);
 
   return (
     <div className={classes.FilterContainer}>
       <div className={classes.FilterForm}>
-        {/* LOGO FOR MOBILE */}
-        <img className={classes.mobileLogo} src={Logo} alt="cover bank logo" />
-
         {/* BODY */}
         <div className={classes.FormBody}>
           {/* DESIGNER FILTER */}
           <label>
             <div className={classes.selectContainer}>
               <Select
-                onChange={(e) =>
-                  setSelectedFilter({ ...selectedFilter, designer: e?.label })
-                }
+                onChange={(e) => updateFilter("designer", e?.value)}
                 placeholder="Designer"
                 value={
                   selectedFilter.designer
                     ? {
-                        label: selectedFilter.designer,
                         value: selectedFilter.designer,
+                        label: selectedFilter.designer,
                       }
                     : null
                 }
-                options={designerFilter}
+                options={designerOptions}
                 isSearchable={true}
-                onInputChange={(value) => {
-                  const filtered = DesignerList.filter((designer) =>
-                    designer.toLowerCase().includes(value.toLowerCase())
-                  ).map((designer) => ({ value: designer, label: designer }));
-                  setDesignerFilter(filtered);
-                }}
                 styles={colourStyles}
+                isClearable={true}
               />
             </div>
           </label>
@@ -111,27 +92,20 @@ export default function SearchFilter({ setSelectedOptions }) {
           <label>
             <div className={classes.selectContainer}>
               <Select
-                onChange={(e) =>
-                  setSelectedFilter({ ...selectedFilter, artist: e?.label })
-                }
+                onChange={(e) => updateFilter("artist", e?.value)}
                 placeholder="Artist"
                 value={
                   selectedFilter.artist
                     ? {
-                        label: selectedFilter.artist,
                         value: selectedFilter.artist,
+                        label: selectedFilter.artist,
                       }
                     : null
                 }
-                options={artistFilter}
+                options={artistOptions}
                 isSearchable={true}
-                onInputChange={(value) => {
-                  const filtered = ArtistList.filter((artist) =>
-                    artist.toLowerCase().includes(value.toLowerCase())
-                  ).map((artist) => ({ value: artist, label: artist }));
-                  setArtistFilter(filtered);
-                }}
                 styles={colourStyles}
+                isClearable={true}
               />
             </div>
           </label>
@@ -140,36 +114,44 @@ export default function SearchFilter({ setSelectedOptions }) {
           <label>
             <div className={classes.selectContainer}>
               <Select
-                onChange={(e) =>
-                  setSelectedFilter({ ...selectedFilter, genre: e?.label })
-                }
+                onChange={(e) => updateFilter("genre", e?.value)}
+                placeholder="Genre"
                 value={
                   selectedFilter.genre
                     ? {
-                        label: selectedFilter.genre,
                         value: selectedFilter.genre,
+                        label: selectedFilter.genre,
                       }
                     : null
                 }
                 options={genreOptions}
                 isSearchable={true}
-                placeholder="Genre"
                 styles={colourStyles}
+                isClearable={true}
               />
             </div>
           </label>
 
-          {/* YEAR FROM */}
+          {/* YEAR FILTER */}
           <label>
-            <input
-              className={classes.inputContainer}
-              placeholder="Year"
-              type="number"
-              value={selectedFilter.year || ""}
-              onChange={(e) =>
-                setSelectedFilter({ ...selectedFilter, year: e.target.value })
-              }
-            />
+            <div className={classes.selectContainer}>
+              <Select
+                onChange={(e) => updateFilter("year", e?.value)}
+                placeholder="Year"
+                value={
+                  selectedFilter.year
+                    ? {
+                        value: selectedFilter.year,
+                        label: selectedFilter.year,
+                      }
+                    : null
+                }
+                options={yearOptions}
+                isSearchable={true}
+                styles={colourStyles}
+                isClearable={true}
+              />
+            </div>
           </label>
 
           {/* RESET */}
