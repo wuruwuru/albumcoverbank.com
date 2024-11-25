@@ -17,6 +17,7 @@ export const useFetchAllCovers = (offset, pageSize, searchTerm) => {
         `,
         config
       );
+      console.log(data);
       return data;
     } catch (error) {
       console.log({ error: error.response || error });
@@ -30,7 +31,7 @@ export const useFetchAllCovers = (offset, pageSize, searchTerm) => {
       refetchOnWindowFocus: true,
       refetchOnMount: true,
       keepPreviousData: true,
-      refetchInterval: 1000,
+      // refetchInterval: 1000,
       cache: queryCache,
       staleTime: 1 * 60 * 1000,
       cacheTime: 5 * 60 * 1000,
@@ -156,6 +157,7 @@ export const useFetchSearch = (offset, searchTerm, selectedOptions) => {
   const link = `${url}${query}`;
 
   const fetchSearch = async () => {
+    console.log(selectedOptions);
     try {
       const { data } = await axios.get(link, config);
       return data;

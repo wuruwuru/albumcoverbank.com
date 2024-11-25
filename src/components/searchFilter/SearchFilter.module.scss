@@ -8,6 +8,7 @@
   margin-top: 8px;
 
   @include media("<=phone") {
+    display: none;
     position: fixed;
     width: 100%;
     height: 100%;
@@ -35,17 +36,9 @@
 
 .FilterForm {
   margin: auto;
-  padding: 3rem;
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  z-index: 4;
-  box-sizing: border-box;
-  background: #fdfdfd;
-  box-shadow: -4px 6px 12px rgba(0, 0, 0, 0.2);
+  padding-top: 2rem;
+  position: relative;
   border-radius: 1.2rem;
-  height: 30.9rem;
 
   @include media("<=phone") {
     height: 100%;
@@ -82,11 +75,10 @@
 }
 
 .FormBody {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  row-gap: 2.2rem;
-  column-gap: 6.6rem;
-  margin-bottom: 4.1rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  // gap: 2rem;
 
   @include media("<=phone") {
     display: flex;
@@ -148,7 +140,7 @@
      
 
       &[type="number"] {
-        padding-left: 1.4rem;
+        padding-left: 1rem;
         &::-webkit-inner-spin-button {
           -webkit-appearance: none;
         }
@@ -156,7 +148,7 @@
         &::placeholder {
           font-weight: 400;
           font-size: 1.4rem;
-          color: #4C4C4C;
+          color: #808080;
         }
 
         &:focus {
@@ -169,7 +161,7 @@
   .selectContainer,
   .inputContainer {
     height: 4.2rem;
-    width: 26rem;
+    width: 16rem;
     border-radius: 1.2rem;
     font-size: 1.4rem;
     color: $text-color;
@@ -177,6 +169,17 @@
 
   .inputContainer {
     border: 1.3px solid #d2d2d2;
+    width: 100%;
+  }
+  .reset {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    text-align: end;
+    font-size: 1.4rem;
+    .resetButton {
+      cursor: pointer;
+    }
   }
 }
 

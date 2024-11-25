@@ -5,7 +5,6 @@ export const colourStyles = {
     background: "#fdfdfd",
     borderRadius: "1.2rem",
     fontSize: "1.4rem",
-    width: "19rem",
     "::-webkit-scrollbar": {
       display: "none",
     },
@@ -37,11 +36,13 @@ export const colourStyles = {
     zIndex: 100,
   }),
 
-  placeholder: (defaultStyles) => ({
-    ...defaultStyles,
-    fontSize: "1.4rem",
-    color: "#808080",
-  }),
+  placeholder: (defaultStyles) => {
+    return {
+      ...defaultStyles,
+      fontSize: "1.4rem",
+      color: "#808080",
+    };
+  },
 
   control: (base) => ({
     ...base,
@@ -50,10 +51,9 @@ export const colourStyles = {
     "&:hover": {
       borderColor: "#cccccc",
     },
-    height: "4.2rem",
-    width: "19rem",
+    height: "4.6rem",
+    width: "100",
     borderRadius: "1.2rem",
-    paddingLeft: "0.5rem",
   }),
 
   dropdownIndicator: (styles) => ({

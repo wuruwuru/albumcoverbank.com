@@ -3,11 +3,10 @@ import { useSearchParams } from "react-router-dom";
 import Select from "react-select";
 import { Genre, ArtistList, DesignerList, Years } from "../../data/Genre";
 
-// STYLE IMPORT
-import classes from "./SearchFilter.module.scss";
+import classes from "./MobileSearchFilter.module.scss";
 import { colourStyles } from "./SelectDropdownStyles";
 
-export default function SearchFilter({ setSelectedOptions }) {
+const MobileSearchFilter = ({ setSelectedOptions }) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const designerOptions = useMemo(
@@ -60,11 +59,12 @@ export default function SearchFilter({ setSelectedOptions }) {
   const handleReset = () => {
     setSearchParams({});
   };
-
   return (
     <div className={classes.FilterContainer}>
+      <div className={classes.headTag}>
+        <p>Filter</p>
+      </div>
       <div className={classes.FilterForm}>
-        {/* BODY */}
         <div className={classes.FormBody}>
           {/* DESIGNER FILTER */}
           <label>
@@ -147,7 +147,7 @@ export default function SearchFilter({ setSelectedOptions }) {
                     : null
                 }
                 options={yearOptions}
-                isSearchable={true}
+                isSearchable={false}
                 styles={colourStyles}
                 isClearable={true}
               />
@@ -164,4 +164,6 @@ export default function SearchFilter({ setSelectedOptions }) {
       </div>
     </div>
   );
-}
+};
+
+export default MobileSearchFilter;
