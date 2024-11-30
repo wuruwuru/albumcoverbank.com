@@ -1,14 +1,15 @@
 import React, { useEffect, useState, useRef } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useFetchAllCovers, useFetchSearch } from "../../hooks/fetch";
+
+import axios from "axios";
 
 // CSS IMPORT
 import classes from "./CoverBank.module.scss";
 
 // IMPORT COMPONENTS
 import SearchBar from "../../components/searchBar/SearchBar";
-
 import SingleCover from "../single-cover/SingleCover";
-// IMAGE IMPORT
 import { SearchResult } from "../../components/searchResult";
 import { HomeResult } from "../../components/homeResult";
 import { ScrolltoTop } from "../../components/scrollToTop";
@@ -24,22 +25,46 @@ export default function CoverBank() {
     year: "",
     genre: "",
   });
-  const [selectedCover, setSelectedCover] = useState({});
+  const [selectedCover, setSelectedCover] = useState(null);
   const [openModal, setOpenModal] = useState(false);
+  const [isLoadingCover, setIsLoadingCover] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
   let pageSize = 15;
 
   // ANIMATION REFS
   const imgRef = useRef();
   const wrapperRef = useRef();
 
-  // FETCH FROM ALL COVERS FROM AIRTABLE
+  const baseId = process.env.REACT_APP_AIRTABLE_API_BASE;
+  const tableName = "Covers";
+  const airtableApiToken = process.env.REACT_APP_AIRTABLE_ACCESS_TOKEN;
+
+  const fetchCoverById = async (coverId) => {
+    setIsLoadingCover(true);
+    try {
+      const response = await axios.get(
+        `https://api.airtable.com/v0/${baseId}/${tableName}/${coverId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${airtableApiToken}`,
+          },
+        }
+      );
+      setSelectedCover(response.data);
+      setOpenModal(true);
+    } catch (error) {
+      console.error("Error fetching cover data:", error);
+    } finally {
+      setIsLoadingCover(false);
+    }
+  };
+
   const {
     status: homeStatus,
     data: allCovers,
     isFetching: homeFetch,
   } = useFetchAllCovers(offset, pageSize, "");
-  console.log(selectedOptions);
-  // FETCH SEARCH RESULTS
   const {
     status: searchStatus,
     data: allSearch,
@@ -47,22 +72,28 @@ export default function CoverBank() {
   } = useFetchSearch(offset, searchTerm, selectedOptions);
 
   useEffect(() => {
-    // ADD SCROLL EVENT TO WINDOW AND SET OFFSET
     if (homeStatus === "success" && allCovers?.records.length > 1) {
       window.addEventListener("scroll", handleScroll);
       setSearchCovers(allSearch?.records);
-      // SET INITIAL COVERS ONCE THE COMPONENT MOUNTS
+
       if (covers.length === 0) {
         setCovers(allCovers.records);
         setOffset(allCovers.offset);
       }
     }
 
-    // CALLBACK FUNCTION
     return () => window.removeEventListener("scroll", handleScroll);
   }, [homeStatus, allCovers, allSearch]);
 
-  // FUNCTION THAT FIRES ONCE THE USER GETS TO THE BOTTOM OF THE SCREEN
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const coverID = params.get("coverId");
+
+    if (coverID) {
+      fetchCoverById(coverID);
+    }
+  }, [location]);
+
   const handleScroll = async () => {
     const isAtBottom =
       window.innerHeight + window.pageYOffset >= document.body.offsetHeight;
@@ -70,6 +101,18 @@ export default function CoverBank() {
       setOffset(allCovers.offset);
       setCovers([...covers, ...allCovers.records]);
     }
+  };
+
+  const handleOpenModal = (cover) => {
+    setSelectedCover(cover);
+    setOpenModal(true);
+    navigate(`?coverId=${cover.id}`);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedCover(null);
+    setOpenModal(false);
+    navigate("/");
   };
 
   return (
@@ -81,58 +124,53 @@ export default function CoverBank() {
           filter: openModal ? "blur(0.4rem)" : "",
         }}
       >
-        <>
-          {/* HEADER */}
-          <div className={classes.CoverBankHeader}>
-            <h2>Explore Nigerian Album Covers</h2>
-          </div>
+        <div className={classes.CoverBankHeader}>
+          <h2>Explore Nigerian Album Covers</h2>
+        </div>
 
-          {/* SEARCH BAR */}
-          <SearchBar
-            setSearchTerm={setSearchTerm}
-            setSelectedOptions={setSelectedOptions}
+        <SearchBar
+          setSearchTerm={setSearchTerm}
+          setSelectedOptions={setSelectedOptions}
+        />
+
+        {!searchTerm &&
+        !selectedOptions.designer &&
+        !selectedOptions.artist &&
+        !selectedOptions.year &&
+        !selectedOptions.genre ? (
+          <HomeResult
+            homeStatus={homeStatus}
+            covers={covers}
+            searchCovers={searchCovers}
+            selectedOptions={selectedOptions}
+            setSelectedCover={handleOpenModal}
+            wrapperRef={wrapperRef}
+            setOpenModal={setOpenModal}
+            imgRef={imgRef}
+            homeFetch={homeFetch}
           />
-
-          {/* COVER GRID */}
-
-          <>
-            {!searchTerm &&
-            !selectedOptions.designer &&
-            !selectedOptions.artist &&
-            !selectedOptions.year &&
-            !selectedOptions.genre ? (
-              <HomeResult
-                homeStatus={homeStatus}
-                covers={covers}
-                searchCovers={searchCovers}
-                selectedOptions={selectedOptions}
-                setSelectedCover={setSelectedCover}
-                wrapperRef={wrapperRef}
-                setOpenModal={setOpenModal}
-                imgRef={imgRef}
-                homeFetch={homeFetch}
-              />
-            ) : (
-              <SearchResult
-                searchStatus={searchStatus}
-                searchTerm={searchTerm}
-                searchCovers={searchCovers}
-                selectedOptions={selectedOptions}
-                setSelectedCover={setSelectedCover}
-                wrapperRef={wrapperRef}
-                setOpenModal={setOpenModal}
-                imgRef={imgRef}
-                searchFetch={searchFetch}
-              />
-            )}
-          </>
-        </>
+        ) : (
+          <SearchResult
+            searchStatus={searchStatus}
+            searchTerm={searchTerm}
+            searchCovers={searchCovers}
+            selectedOptions={selectedOptions}
+            setSelectedCover={handleOpenModal}
+            wrapperRef={wrapperRef}
+            setOpenModal={setOpenModal}
+            imgRef={imgRef}
+            searchFetch={searchFetch}
+          />
+        )}
         <ScrolltoTop />
       </div>
 
-      {/* SELECTED COVER */}
       {openModal && (
-        <SingleCover cover={selectedCover} setOpenModal={setOpenModal} />
+        <SingleCover
+          cover={selectedCover}
+          setOpenModal={handleCloseModal}
+          isLoading={isLoadingCover}
+        />
       )}
     </>
   );
