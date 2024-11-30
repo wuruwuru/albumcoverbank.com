@@ -17,7 +17,6 @@ export const useFetchAllCovers = (offset, pageSize, searchTerm) => {
         `,
         config
       );
-      console.log(data);
       return data;
     } catch (error) {
       console.log({ error: error.response || error });
@@ -157,7 +156,6 @@ export const useFetchSearch = (offset, searchTerm, selectedOptions) => {
   const link = `${url}${query}`;
 
   const fetchSearch = async () => {
-    console.log(selectedOptions);
     try {
       const { data } = await axios.get(link, config);
       return data;
