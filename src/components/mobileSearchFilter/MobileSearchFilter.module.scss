@@ -54,12 +54,27 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 2rem;
 
     p {
         font-size: 1.4rem;
         color: $text-color;
         font-weight: 500;
+    }
+  }
+
+  .filter {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+    padding: 1.6rem;
+    border-radius: 1.2rem;
+    background-color: $brown-color;
+
+    p {
+        font-size: 1.4rem;
+        color: #ffffff;
     }
   }
 }

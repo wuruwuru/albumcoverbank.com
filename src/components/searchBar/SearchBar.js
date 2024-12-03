@@ -88,6 +88,7 @@ export default function SearchBar({ setSearchTerm, setSelectedOptions }) {
         <MobileSearchFilter
           setSelectedOptions={setSelectedOptions}
           capitalizeWord={capitalizeWord}
+          closeDrawer={toggleDrawer}
         />
       </Drawer>
     </div>

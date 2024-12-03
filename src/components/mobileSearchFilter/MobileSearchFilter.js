@@ -6,7 +6,7 @@ import { Genre, ArtistList, DesignerList, Years } from "../../data/Genre";
 import classes from "./MobileSearchFilter.module.scss";
 import { colourStyles } from "./SelectDropdownStyles";
 
-const MobileSearchFilter = ({ setSelectedOptions }) => {
+const MobileSearchFilter = ({ setSelectedOptions, closeDrawer }) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const designerOptions = useMemo(
@@ -155,6 +155,9 @@ const MobileSearchFilter = ({ setSelectedOptions }) => {
           </label>
 
           {/* RESET */}
+          <div className={classes.filter} onClick={closeDrawer}>
+            <p className={classes.filterButton}>Filter</p>
+          </div>
           <div className={classes.reset}>
             <p className={classes.resetButton} onClick={handleReset}>
               Reset
