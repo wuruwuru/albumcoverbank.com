@@ -13,6 +13,10 @@ import Toyosi from "../assets/contributors/toyosi.svg";
 import Jessica from "../assets/contributors/jessica.svg";
 import Goodluck from "../assets/contributors/goodluck.svg";
 import Samson from "../assets/contributors/samson.webp";
+import Faruq from "../assets/contributors/faruq.jpg";
+import Sola from "../assets/contributors/sola.png";    
+import Dami from "../assets/contributors/dami.jpg";    
+
 
 export const contributors = [
   {
@@ -41,6 +45,11 @@ export const contributors = [
     image: Idris,
   },
   {
+    name: "Sola Oyeleke",
+    role: "Engineer",
+    image: Sola,
+  },
+  {
     name: "Tomiwa Ajiboye",
     role: "Designer",
     image: Tomiwa,
@@ -61,8 +70,19 @@ export const contributors = [
     image: Toyosi,
   },
   {
+    name: "Faruq Adeyeye",
+    role: "Designer",
+    image: Faruq,
+  },
+  {
+    name: "Damilola Nwachi",
+    role: "Researcher",
+    image: Dami,
+  },
+  {
     name: "Opemipo Aikomo",
     role: "Producer",
     image: Ope,
   }
+  
 ];
