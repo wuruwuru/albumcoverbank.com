@@ -8,10 +8,10 @@ import Eseosa from "../assets/contributors/eseosa.svg";
 import Toyosi from "../assets/contributors/toyosi.svg";
 import Jessica from "../assets/contributors/jessica.svg";
 import Goodluck from "../assets/contributors/goodluck.svg";
-import Samson from "../assets/contributors/samson.webp";
-import Faruq from "../assets/contributors/faruq.jpg";
-import Sola from "../assets/contributors/sola.png";    
-import Dami from "../assets/contributors/dami.jpg"; 
+import Samson from "../assets/contributors/samson.jpeg";
+import Faruq from "../assets/contributors/faruq.jpeg";
+import Sola from "../assets/contributors/sola.jpeg";    
+import Dami from "../assets/contributors/dami.jpeg"; 
    
 
 
