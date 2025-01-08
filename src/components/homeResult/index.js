@@ -1,40 +1,29 @@
 import React from "react"
 import CoverGrid from "../../pages/cover-bank/CoverGrid"
-
 import { FetchMoreLoader } from "../FetchMoreLoader"
+
 export function HomeResult({
   homeStatus,
-  selectedCover,
+  covers,
   setSelectedCover,
   wrapperRef,
   setOpenModal,
   imgRef,
   homeFetch,
-  covers,
+  error
 }) {
-  console.log("ll", homeStatus)
   return (
     <>
-      {homeStatus === "success" ? (
-        <>
-          <>
-            {" "}
-            <CoverGrid
-              covers={covers}
-              setSelectedCover={setSelectedCover}
-              selectedCover={selectedCover}
-              setOpenModal={setOpenModal}
-              imgRef={imgRef}
-              wrapperRef={wrapperRef}
-            />{" "}
-          </>
-
-          {/* FETCHING NEW DATA */}
-          {homeFetch && <FetchMoreLoader />}
-        </>
-      ) : (
-        <FetchMoreLoader />
-      )}
+      <CoverGrid
+        covers={covers}
+        setSelectedCover={setSelectedCover}
+        setOpenModal={setOpenModal}
+        imgRef={imgRef}
+        wrapperRef={wrapperRef}
+        error={error}
+        isError={homeStatus === "error"}
+      />
+      {homeFetch && covers?.length > 0 && <FetchMoreLoader />}
     </>
   )
 }

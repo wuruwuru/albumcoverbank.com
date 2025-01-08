@@ -28,6 +28,7 @@ export default function CoverBank() {
   const [selectedCover, setSelectedCover] = useState(null);
   const [openModal, setOpenModal] = useState(false);
   const [isLoadingCover, setIsLoadingCover] = useState(false);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
   let pageSize = 15;
@@ -42,6 +43,7 @@ export default function CoverBank() {
 
   const fetchCoverById = async (coverId) => {
     setIsLoadingCover(true);
+    setError(null);
     try {
       const response = await axios.get(
         `https://api.airtable.com/v0/${baseId}/${tableName}/${coverId}`,
@@ -54,6 +56,7 @@ export default function CoverBank() {
       setSelectedCover(response.data);
       setOpenModal(true);
     } catch (error) {
+      setError("Sorry, we couldn't load this cover. Please try again later.");
       console.error("Error fetching cover data:", error);
     } finally {
       setIsLoadingCover(false);
@@ -148,6 +151,7 @@ export default function CoverBank() {
             setOpenModal={setOpenModal}
             imgRef={imgRef}
             homeFetch={homeFetch}
+            error={error}
           />
         ) : (
           <SearchResult
@@ -160,6 +164,7 @@ export default function CoverBank() {
             setOpenModal={setOpenModal}
             imgRef={imgRef}
             searchFetch={searchFetch}
+            error={error}
           />
         )}
         <ScrolltoTop />
