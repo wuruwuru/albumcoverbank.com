@@ -25,19 +25,6 @@ export default function Navbar() {
   }, []);
   return (
     <>
-      <a
-        href="https://airtable.com/appTOXK95JzU2Ml0r/pagNaJik0vOZrTkLA/form"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <div className={classes.survey}>
-          <p>
-            We're hoping to get feedback on how you use Album Cover Bank. Please
-            fill this brief survey
-          </p>
-        </div>
-      </a>
-
       <nav className={classes.Navbar}>
         <div className={classes.Logo}>
           <Link to="/">
