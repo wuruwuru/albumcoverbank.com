@@ -33,12 +33,19 @@
     margin-bottom: 3.2rem;
   }
 
-  p, h4 {
+  ul, ul > li {
+    list-style: disc inside;
+  }
+
+  p, h4, li {
     font-size: 1.6rem;
     font-weight: normal;
-    margin: 2rem 0;
     line-height: 2.4rem;
     color: #000000;
+  }
+
+  p, h4 {
+    margin: 2rem 0;
 
     &:first-child {
       margin-top: 0;
