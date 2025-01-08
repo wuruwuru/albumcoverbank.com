@@ -14,22 +14,31 @@ export default function CoverGrid({
   wrapperRef,
   setSelectedCover,
   setOpenModal,
-  error
+  error,
+  isError
 }) {
   const navigate = useNavigate()
 
-  if (error) {
+  // Handle network/API errors
+  if (!covers || isError) {
     return (
       <div className={classes.errorMessage}>
-        <p>{error}</p>
+        <div className={classes.errorContent}>
+          <p>{error}</p>
+        </div>
       </div>
     )
   }
 
-  if (!covers || covers.length === 0) {
+  // Handle no results found
+  if (covers && covers.length === 0) {
     return (
       <div className={classes.errorMessage}>
-        <p>No covers found. Try adjusting your search criteria.</p>
+        <div className={classes.errorContent}>
+          <p>
+            Can't find what you're looking for? <a href="https://forms.gle/Tz1SMwkBRbKvd62JA" target="_blank" rel="noopener noreferrer">Submit a cover</a>
+          </p>
+        </div>
       </div>
     )
   }

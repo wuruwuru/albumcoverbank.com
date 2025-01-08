@@ -117,11 +117,25 @@
   min-height: calc(100vh - 560px);
   width: 100%;
   text-align: center;
+}
+
+.errorContent {
+  max-width: 500px;
+  padding: 2rem;
   
   p {
     font-size: 1.5rem;
     color: #666;
-    max-width: 400px;
     line-height: 1.5;
+    margin-bottom: 1.5rem;
+  }
+
+  a {
+    color: $brown-color;
+    text-decoration: underline;
+    
+    &:hover {
+      text-decoration: none;
+    }
   }
 }

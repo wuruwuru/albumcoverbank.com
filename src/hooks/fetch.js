@@ -13,30 +13,37 @@ export const useFetchAllCovers = (offset, pageSize, searchTerm) => {
   const fetchAllCover = async () => {
     try {
       const { data } = await axios.get(
-        `https://api.airtable.com/v0/${apiBase}/Covers?pageSize=${pageSize}&view=All%20Covers&filterByFormula=SEARCH(%22${searchTerm}%22%2C%7BAlbum%7D)&sort%5B0%5D%5Bfield%5D=Last%20Modified&sort%5B0%5D%5Bdirection%5D=desc&offset=${offset}
-        `,
+        `https://api.airtable.com/v0/${apiBase}/Covers?pageSize=${pageSize}&view=All%20Covers&filterByFormula=SEARCH(%22${searchTerm}%22%2C%7BAlbum%7D)&sort%5B0%5D%5Bfield%5D=Last%20Modified&sort%5B0%5D%5Bdirection%5D=desc&offset=${offset}`,
         config
       );
+      if (!data) {
+        throw new Error('No data received from server');
+      }
       return data;
     } catch (error) {
-      console.log({ error: error.response || error });
+      if (error.response) {
+        throw new Error(`Server error: ${error.response.status}`);
+      } else if (error.request) {
+        throw new Error('Network error: Could not connect to server');
+      } else {
+        throw error;
+      }
     }
   };
 
-  const { status, data, isFetching, refetch } = useQuery(
+  return useQuery(
     ["allCovers", searchTerm, offset],
-    () => fetchAllCover(),
+    fetchAllCover,
     {
       refetchOnWindowFocus: true,
       refetchOnMount: true,
       keepPreviousData: true,
-      // refetchInterval: 1000,
+      retry: 2, // Retry failed requests up to 2 times
       cache: queryCache,
       staleTime: 1 * 60 * 1000,
       cacheTime: 5 * 60 * 1000,
     }
   );
-  return { status, data, isFetching, refetch };
 };
 
 // FETCH ALL ARTISTS AND DESIGNERS
@@ -158,20 +165,29 @@ export const useFetchSearch = (offset, searchTerm, selectedOptions) => {
   const fetchSearch = async () => {
     try {
       const { data } = await axios.get(link, config);
+      if (!data) {
+        throw new Error('No data received from server');
+      }
       return data;
     } catch (error) {
-      console.log({ error: error.response || error });
+      if (error.response) {
+        throw new Error(`Server error: ${error.response.status}`);
+      } else if (error.request) {
+        throw new Error('Network error: Could not connect to server');
+      } else {
+        throw error;
+      }
     }
   };
 
-  const { status, data, isFetching, refetch } = useQuery(
+  return useQuery(
     ["allSearches", searchTerm, offset, selectedOptions],
-    () => fetchSearch(),
+    fetchSearch,
     {
       refetchOnWindowFocus: true,
       refetchOnMount: true,
       keepPreviousData: true,
+      retry: 2, // Retry failed requests up to 2 times
     }
   );
-  return { status, data, isFetching, refetch };
 };

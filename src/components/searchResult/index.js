@@ -14,25 +14,16 @@ export function SearchResult({
 }) {
   return (
     <>
-      {searchStatus === "success" && (
-        <>
-          <CoverGrid
-            covers={searchCovers}
-            setSelectedCover={setSelectedCover}
-            setOpenModal={setOpenModal}
-            imgRef={imgRef}
-            wrapperRef={wrapperRef}
-            error={error}
-          />
-
-          {/* FETCHING NEW DATA */}
-          {searchFetch &&
-            searchCovers &&
-            searchCovers.length > 0 && (
-              <FetchMoreLoader />
-            )}
-        </>
-      )}
+      <CoverGrid
+        covers={searchCovers}
+        setSelectedCover={setSelectedCover}
+        setOpenModal={setOpenModal}
+        imgRef={imgRef}
+        wrapperRef={wrapperRef}
+        error={error}
+        isError={searchStatus === "error"}
+      />
+      {searchFetch && searchCovers?.length > 0 && <FetchMoreLoader />}
     </>
   )
 }
