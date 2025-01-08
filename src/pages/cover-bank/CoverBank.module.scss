@@ -109,3 +109,19 @@
       width: 90%;
     }
 }
+
+.errorMessage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10rem 0;
+  width: 100%;
+  text-align: center;
+  
+  p {
+    font-size: 1.5rem;
+    color: #666;
+    max-width: 400px;
+    line-height: 1.5;
+  }
+}
