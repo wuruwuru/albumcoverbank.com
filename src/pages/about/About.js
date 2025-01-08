@@ -25,7 +25,7 @@ export default function About() {
         </section>
         <section>
           <h3>Join us</h3>
-          <p>You can contribute the Cover Bank project by helping to maintain the database, working on the website or publishing a story inspired by the covers. If you're interested, please <a href="mailto:coverbank@wuruwuru.com">send us an email</a>.</p>
+          <p>You can contribute the Cover Bank project by helping to maintain the database, website or publishing a story inspired by the covers. If you're interested, please <a href="https://docs.google.com/forms/d/e/1FAIpQLSd9mEbDJV6DRaJkKqhWrFjPYrIN4cAHZ268H7pmYtYrp6lglA/viewform?usp=sf_link" target="_blank">reach out to us</a>.</p>
         </section>
       </div>
 
