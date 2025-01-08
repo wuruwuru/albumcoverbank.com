@@ -24,17 +24,6 @@ export default function About() {
           <p>The archive is funded by Independent Arts, a creative studio for passion projects, and maintained by Helloworld, a technology studio for cultural production.</p>
         </section>
         <section>
-          <h3>Essays</h3>
-          <p>
-            <a href="https://www.albumcoverbank.com/funk"><b>Nigerian Funk</b></a> <br></br>
-            <span>Opemipo Aikomo & Sample Chief</span>
-          </p>
-          <p>
-            <a href="https://www.waxpoetics.com/article/nigerian-1970s-album-covers-wuruwuru-archives/"><b>Face the Music</b></a> <br></br>
-            <span>Immaculata Abba & Wax Poetics</span>
-          </p>
-        </section>
-        <section>
           <h3>Join us</h3>
           <p>You can contribute the Cover Bank project by helping to maintain the database, working on the website or publishing a story inspired by the covers. If you're interested, please <a href="mailto:coverbank@wuruwuru.com">send us an email</a>.</p>
         </section>
